@@ -1,5 +1,6 @@
 <?php
 
+//Código para rechazar una solicitud de vacaciones.
 include('dbconnect.php');
 
 $id = $_GET['id'];

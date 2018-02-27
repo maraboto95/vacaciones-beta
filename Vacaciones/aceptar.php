@@ -44,23 +44,6 @@ $row = mysqli_fetch_assoc($result);
 $diasdisponibles = $row['diasdisponibles'];
 
 //Verificación de que el empleado cuenta con días suficientes
-$resta = $diasdisponibles - $nodias1;
-
-if($resta>=0 && $posible == false){
-	$posible = true;
-	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
-
-	mysqli_query($conn, $query);
-}
-
-$resta = $diasdisponibles - $nodias2;
-
-if($resta>=0 && $posible == false){
-	$posible = true;
-	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
-
-	mysqli_query($conn, $query);
-}
 
 $resta = $diasdisponibles - $nodias3;
 

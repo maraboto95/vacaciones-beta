@@ -1,5 +1,7 @@
 <?php
 
+//Código para borrar a un empleado
+
 $id = $_GET['id'];
 
 include('dbconnect.php');

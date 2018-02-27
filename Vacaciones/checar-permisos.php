@@ -8,6 +8,12 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
     exit; // prevent further execution, should there be more code that follows
 }
+
+//si el usuario no cuenta con los permisos para ver esta página, redireccionar a login.
+if($_SESSION['privilegio'] < 1){
+	header("Location: index.html");
+    exit; // prevent further execution, should there be more code that follows
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,10 +107,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['nodediassueldo']; ?></td>
+							<td><?php 
+							if($row['nodediassueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediassueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['nodediassueldo2']; ?></td>
+							<td><?php 
+							if($row['nodediassueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediassueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -118,10 +134,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['delsueldo']; ?></td>
+							<td><?php 
+							if($row['delsueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['delsueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['delsueldo2']; ?></td>
+							<td><?php 
+							if($row['delsueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['delsueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -135,10 +161,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['alsueldo']; ?></td>
+							<td><?php 
+							if($row['alsueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['alsueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['alsueldo2']; ?></td>
+							<td><?php 
+							if($row['alsueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['alsueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -172,10 +208,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['nodediasnosueldo']; ?></td>
+							<td><?php 
+							if($row['nodediasnosueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediasnosueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['nodediasnosueldo2']; ?></td>
+							<td><?php 
+							if($row['nodediasnosueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediasnosueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -189,10 +235,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['delnosueldo']; ?></td>
+							<td><?php 
+							if($row['delnosueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['delnosueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['delnosueldo2']; ?></td>
+							<td><?php 
+							if($row['delnosueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['delnosueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -206,10 +262,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['alnosueldo']; ?></td>
+							<td><?php 
+							if($row['alnosueldo'] == 0){
+								echo " ";
+							}else{
+								echo $row['alnosueldo']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['alnosueldo2']; ?></td>
+							<td><?php 
+							if($row['alnosueldo2'] == 0){
+								echo " ";
+							}else{
+								echo $row['alnosueldo2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -231,16 +297,31 @@ if (!isset($_SESSION["username"])) {
 		<div class="row">
 			<div class="col-md-5">
 				<label>FECHA:</label>
-				<?php echo $row['fechahoras']; ?>
+				<?php 
+							if($row['fechahoras'] == 0){
+								echo " ";
+							}else{
+								echo $row['fechahoras']; 
+							}?>
 			</div>
 			<div class="col-md-4">
 				<label>HORARIO: </label>
 				<label>DE:</label>
-				<?php echo $row['horariodehoras']; ?>
+				<?php 
+							if($row['horariodehoras'] == 0){
+								echo " ";
+							}else{
+								echo $row['horariodehoras']; 
+							}?>
 			</div>
 			<div class="col-md-3">
 				<label>A:</label>
-				<?php echo $row['horarioahoras']; ?>
+				<?php 
+							if($row['horarioahoras'] == 0){
+								echo " ";
+							}else{
+								echo $row['horarioahoras']; 
+							}?>
 			</div>
 		</div>
 		<div class="row">
@@ -266,10 +347,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['nodediasvacaciones']; ?></td>
+							<td><?php 
+							if($row['nodediasvacaciones'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediasvacaciones']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['nodediasvacaciones2']; ?></td>
+							<td><?php 
+							if($row['nodediasvacaciones2'] == 0){
+								echo " ";
+							}else{
+								echo $row['nodediasvacaciones2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -283,10 +374,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['delvacaciones']; ?></td>
+							<td><?php 
+							if($row['delvacaciones'] == 0){
+								echo " ";
+							}else{
+								echo $row['delvacaciones']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['delvacaciones2']; ?></td>
+							<td><?php 
+							if($row['delvacaciones2'] == 0){
+								echo " ";
+							}else{
+								echo $row['delvacaciones2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -300,10 +401,20 @@ if (!isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $row['alvacaciones']; ?></td>
+							<td><?php 
+							if($row['alvacaciones'] == 0){
+								echo " ";
+							}else{
+								echo $row['alvacaciones']; 
+							}?></td>
 						</tr>
 						<tr>
-							<td><?php echo $row['alvacaciones2']; ?></td>
+							<td><?php 
+							if($row['alvacaciones2'] == 0){
+								echo " ";
+							}else{
+								echo $row['alvacaciones2']; 
+							}?></td>
 						</tr>
 					</tbody>
 				</table>

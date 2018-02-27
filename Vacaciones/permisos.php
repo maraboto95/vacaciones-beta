@@ -3,10 +3,11 @@ session_start(); // start session
 
 // do check
 if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
+    header("Location: loginuser.php");
     exit; // prevent further execution, should there be more code that follows
 }
 
+//Traer los datos del empleado que está llenando la forma, para llenar la primera parte de la solicitud.
 include('dbconnect.php');
 
 $nombre = $_SESSION["username"];
@@ -29,12 +30,15 @@ $row = mysqli_fetch_assoc($result);
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- COMIENZA FORMA DE SOLICITUD DE PERMISOS Y VACACIONES -->
 	<div class="col-md-12" style="text-align:center">
 				<h1>SOLICITUD DE PERMISOS Y VACACIONES</h1><br><br>
 	</div>
 	<div class="container" style="border:1px solid black;">
 		<div class="row">
 			<div class="col-md-8">
+
+				<!-- SECCIÓN BASE -->
 				<label>Nombre: </label>
 				<input type="text" class="form-control" placeholder="<?php echo $row['nombre']; echo $row['apellido'] ?>" style="width:500px;" disabled>
 			</div>
@@ -61,6 +65,9 @@ $row = mysqli_fetch_assoc($result);
 			<div class="col-md-4"></div>
 		</div>
 	</div><br>
+	<!-- TERMINA SECCIÓN BASE -->
+
+	<!-- SECCIÓN DE PERMISOS CON GOCE DE SUELDO -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -180,6 +187,9 @@ $row = mysqli_fetch_assoc($result);
 			</div>
 		</div><br>
 	</div>
+	<!--TERMINA SECCIÓN 1 -->
+
+	<!-- SECCIÓN DE PERMISOS SIN GOCE DE SUELDO -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -251,6 +261,9 @@ $row = mysqli_fetch_assoc($result);
 			</div>
 		</div><br>
 	</div>
+	<!-- TERMINA SECCIÓN 2 -->
+
+	<!-- SECCIÓN DE PERMISOS PARA AUSENTARSE POR HORAS -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -279,6 +292,9 @@ $row = mysqli_fetch_assoc($result);
 			</div>
 		</div><br>
 	</div>
+	<!-- TERMINA SECCIÓN 3 -->
+
+	<!-- SECCIÓN DE VACACIONES -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -345,6 +361,9 @@ $row = mysqli_fetch_assoc($result);
 			</div>
 		</div><br><br><button type="submit" class="btn btn-info">Solicitar</button></form><br><br>
 	</div>
+	<!-- TERMINA SECCIÓN 4 -->
+
+	<!-- SECCIÓN DE FIRMAS Y NOMBRES -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2" style="padding-left:10px; padding-right:10px">
@@ -381,5 +400,6 @@ $row = mysqli_fetch_assoc($result);
 			</div>
 		</div>
 	</div>
+	<!-- TERMINA SECCIÓN DE FIRMAS Y NOMBRES -->
 </body>
 </html>

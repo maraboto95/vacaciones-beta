@@ -1,5 +1,6 @@
 <?php
 
+//info para la conexión a la BD (Base de Datos).
 $host = "localhost";
 
 $user = "root";

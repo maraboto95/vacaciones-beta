@@ -7,10 +7,13 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
     exit; // prevent further execution, should there be more code that follows
 }
+//Código que envía la solicitud de permiso a la BD.
 
 //Conexión
 
 include('dbconnect.php');
+
+//Declaración de variables.
 
 $nombre = $_SESSION["username"];
 

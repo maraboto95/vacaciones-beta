@@ -1,5 +1,7 @@
 <?php
 
+//Código que Agrega a un empleado a la BD.
+
 //Conexión
 
 include('dbconnect.php');

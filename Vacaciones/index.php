@@ -6,6 +6,12 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
     exit; // prevent further execution, should there be more code that follows
 }
+
+//Checa si el usuario cuenta con los permisos suficientes para acceder, si no, lo regresa a login.
+if($_SESSION['privilegio'] < 1){
+	header("Location: index.html");
+    exit; // prevent further execution, should there be more code that follows
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +27,8 @@ if (!isset($_SESSION["username"])) {
 <body>
 	<?php
 
+	//Se agarra a todos los empleados en la BD para desplegarlos en la pantalla.
+
 	include('dbconnect.php');
 
 	$query = "SELECT * FROM empleados";
@@ -28,6 +36,8 @@ if (!isset($_SESSION["username"])) {
 	$result = mysqli_query($conn, $query);
 	?>
 	<div class="container bg-info" style="padding-top:20px; padding-bottom:20px; width:110%;">
+
+		<!-- TITULO Y BOTÓN DE LOGOUT -->
 		<div class="row">
 			<div class="col-sm-4">
 				<h3>Sistema de Vacaciones Beta</h3><br>
@@ -38,9 +48,12 @@ if (!isset($_SESSION["username"])) {
 				<a href="logout.php" class="btn btn-danger" role="button">Logout</a>
 			</div>
 		</div>
+		<!--FIN DE TITULO Y BOTÓN DE LOGOUT -->
+
 		<br>
 		<div class="row">
 			<div class="col-sm-4">
+				<!--FORMA PARA AGREGAR EMPLEADOS -->
 				<h3>Agregar Empleado</h3>
 				<form role="form" action="insert.php" method="post">
 					<div class="form-group">
@@ -73,9 +86,14 @@ if (!isset($_SESSION["username"])) {
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Add Empleado</button>
 				</form><br>
+				<!--TERMINA FORMA PARA AGREGAR EMPLEADOS -->
+				<!--BOTÓN PARA IR A CHECAR PERMISOS -->
 				<a href="checar-permisos.php"><button type="submit" class="btn btn-primary btn-block">Checar Permisos</button></a>
 			</div>
+			<!-- ACABA -->
+
 			<div class="col-sm-8">
+				<!--TABLA QUE DESPLIEGA A TODOS LOS EMPLEADOS Y SU INFORMACIÓN -->
 				<h3>Empleados</h3>
 				<table class="table">
 					<thead>
@@ -93,6 +111,7 @@ if (!isset($_SESSION["username"])) {
 					<tbody>
 						<?php
 
+						//Recoger todos los datos que se trajeron de la BD.
 						while($row = mysqli_fetch_assoc($result)){
 
 						
@@ -117,6 +136,8 @@ if (!isset($_SESSION["username"])) {
 						?>
 					</tbody>
 				</table>
+				<!-- FIN DE LA TABLA -->
+				
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 <?php
 
+//Código para editar la información de un empleado.
 include('dbconnect.php');
 
 $id = $_GET['id'];

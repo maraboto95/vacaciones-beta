@@ -1,3 +1,19 @@
+<?php
+session_start(); // start session
+
+// do check
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit; // prevent further execution, should there be more code that follows
+}
+
+//Si el usuario no cuenta con los permisos suficientes, redirecciona a login.
+if($_SESSION['privilegio'] < 1){
+	header("Location: index.html");
+    exit; // prevent further execution, should there be more code that follows
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +27,7 @@
 <body>
 	<?php
 
+	//Se consigue el id del empleado al que se va a editar.
 	$id = $_GET['id'];
 
 	include('dbconnect.php');
@@ -19,6 +36,8 @@
 
 	$result = mysqli_query($conn, $query);
 	?>
+
+	<!-- COMIENZO DE LA FORMA -->
 	<div class="container bg-info" style="padding-top:20px; padding-bottom:20px;">
 		<h3>Edición de empleado</h3>
 		<form role="form" action="edit.php" method="get">
@@ -56,7 +75,10 @@
 				<input type="date" name="fechaantiguedad" class="form-control" value="<?php echo $row['fechadeantiguedad']?>">
 			</div>
 			<button type="submit" class="btn bg-success btn-block">Editar</button>
+			<!-- FIN DE LA FORMA -->
 			<?php
+
+			//Cerrar conexión a la BD.
 
 		}
 

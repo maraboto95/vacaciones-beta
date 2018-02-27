@@ -10,18 +10,24 @@
 <body>
 	<div class="container" style="padding-left:300px;">
 		<div class="row">
+			
+			<!--FORMA DE LOGIN -->
 			<div class="col-md-8 col-md-offset-3">
 				<div class="page-header text-center">
 					<h1>Login <small>Admin</small></h1>
 				</div>
 				<form class="form-signin" method="post" action="manejador.php">
-					<h2 class="form-signin-heading" style="padding-left:200px;">Sign in</h2>
+					<center>
+					<h2 class="form-signin-heading">Sign in</h2>
 					<label for="user" class="sr-only">Nombre</label>
 					<input type="text" name="usuario" class="form-control" placeholder="Nombre" required autofocus>
 					<label for="password" class="sr-only">Apellido</label>
 					<input type="password" name="password" class="form-control" placeholder="Password" required>
 					<input type="submit" name="submit" class="btn btn-lg btn-primary btn-block" value="Sign In">
+				</center>
 				</form>
+				<!-- TERMINA FORMA DE LOGIN -->
+
 			</div>
 		</div>
 	</div>
