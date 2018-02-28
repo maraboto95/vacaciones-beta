@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 
 //Checa si el usuario cuenta con los permisos suficientes para acceder, si no, lo regresa a login.
 if($_SESSION['privilegio'] < 1){
-	header("Location: index.html");
+	header("Location: homeuser.php");
     exit; // prevent further execution, should there be more code that follows
 }
 ?>

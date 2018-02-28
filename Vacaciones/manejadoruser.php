@@ -17,7 +17,7 @@ if(mysqli_num_rows($result) > 0){
 	session_start();
 	$_SESSION['username'] = $nombre;
 	$_SESSION['privilegio'] = 0;
-	header('Location: index.html');
+	header('Location: homeuser.php');
 }else{
 	header('Location: loginuser.php');
 }

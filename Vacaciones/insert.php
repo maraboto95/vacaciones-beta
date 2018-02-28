@@ -20,9 +20,11 @@ $jefe = $_POST['jefe'];
 
 $fechaantiguedad = =$_POST['fechaantiguedad'];
 
+$titulacion = 'disponible';
+
 //Query
 
-$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', $fechaantiguedad)";
+$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad, titulacion, matrimonio) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', $fechaantiguedad, '$titulacion', '$titulacion')";
 
 if(mysqli_query($conn, $query)){
 	echo "Insert exitoso";

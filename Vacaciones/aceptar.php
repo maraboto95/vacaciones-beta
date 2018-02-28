@@ -16,10 +16,6 @@ $result = mysqli_query($conn, $query);
 
 $row = mysqli_fetch_assoc($result);
 
-$nodias1 = $row['nodediassueldo'];
-
-$nodias2 = $row['nodediassueldo2'];
-
 $nodias3 = $row['nodediasnosueldo'];
 
 $nodias4 = $row['nodediasnosueldo2'];
@@ -34,8 +30,10 @@ $horade = $row['horariodehoras'];
 
 $horaa = $row['horarioahoras'];
 
+$razon = $row['razondepermiso'];
+
 //Crear Query de los días del empleado
-$query = "SELECT horasdisponibles FROM empleados WHERE nombre='$nombre'";
+$query = "SELECT * FROM empleados WHERE nombre='$nombre'";
 
 $result = mysqli_query($conn, $query);
 
@@ -43,11 +41,17 @@ $row = mysqli_fetch_assoc($result);
 
 $diasdisponibles = $row['diasdisponibles'];
 
+$vacacionesdisponibles = $row['vacacionesdisponibles'];
+
+$titulacion = $row['titulacion'];
+
+$matrimonio = $row['matrimonio'];
+
 //Verificación de que el empleado cuenta con días suficientes
 
 $resta = $diasdisponibles - $nodias3;
 
-if($resta>=0 && $posible == false){
+if($resta>=0 && $posible == false && $nodias3 > 0){
 	$posible = true;
 	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
 
@@ -56,30 +60,56 @@ if($resta>=0 && $posible == false){
 
 $resta = $diasdisponibles - $nodias4;
 
-if($resta>=0 && $posible == false){
+if($resta>=0 && $posible == false && $nodias4 > 0){
 	$posible = true;
 	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
 
 	mysqli_query($conn, $query);
 }
 
-$resta = $diasdisponibles - $nodias5;
+$resta = $vacacionesdisponibles - $nodias5;
 
-if($resta>=0 && $posible == false){
+if($resta>=0 && $posible == false && $nodias5 > 0){
 	$posible = true;
 	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE nombre='$nombre'";
 
 	mysqli_query($conn, $query);
 }
 
-$resta = $diasdisponibles - $nodias6;
+$resta = $vacacionesdisponibles - $nodias6;
 
-if($resta>=0 && $posible == false){
+if($resta>=0 && $posible == false && $nodias6 > 0){
 	$posible = true;
 	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE nombre='$nombre'";
 
 	mysqli_query($conn, $query);
 }
+
+if($razon == "titulacion" && $titulacion == "disponible"){
+	$titulacion = "usado";
+	$posible = true;
+}else{
+	if($razon == "titulacion"){
+		$posible = false;
+	}else{
+		if($razon == "matrimonio" && $matrimonio == "disponible"){
+			$matrimonio = "usado";
+			$posible = true;
+		}else{
+			if($razon == "matrimonio"){
+				$posible = false;
+			}
+		}
+	}
+}
+
+$query = "UPDATE empleados SET titulacion='$titulacion', matrimonio='$matrimonio' WHERE nombre='$nombre'";
+
+if(mysqli_query($conn, $query)){
+		echo "Updated";
+	}else{
+		echo "Error";
+	}
 
 //Sí contó con días disponibles, se hace acepta la solicitud, si no, no se hace nada.
 if($posible == true){

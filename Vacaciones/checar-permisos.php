@@ -11,7 +11,7 @@ if (!isset($_SESSION["username"])) {
 
 //si el usuario no cuenta con los permisos para ver esta página, redireccionar a login.
 if($_SESSION['privilegio'] < 1){
-	header("Location: index.html");
+	header("Location: homeuser.php");
     exit; // prevent further execution, should there be more code that follows
 }
 ?>
@@ -91,6 +91,10 @@ if($_SESSION['privilegio'] < 1){
 			<!-- PARTE INFERIOR DERECHA DE LA PANTALLA DONDE SE DESPLIEGAN TODOS LOS PERMISOS DE ACUERDO AL FILTRO -->
 			<div class="col-sm-8">
 				<h3>Permisos</h3>
+				<?php
+
+				if($row['nodediassueldo'] != 0 || $row['nodediassueldo2'] != 0 || $row['delsueldo'] != 0 || $row['delsueldo2'] != 0 || $row['alsueldo'] != 0 || $row['alsueldo2'] != 0){
+				?>
 				<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -187,6 +191,10 @@ if($_SESSION['privilegio'] < 1){
 			</div>
 		</div><br>
 	</div>
+	<?php
+}
+				if($row['nodediasnosueldo'] != 0 || $row['nodediasnosueldo2'] != 0 || $row['delnosueldo'] != 0 || $row['delnosueldo2'] != 0 || $row['alnosueldo'] != 0 || $row['alnosueldo2'] != 0){
+				?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -288,6 +296,10 @@ if($_SESSION['privilegio'] < 1){
 			</div>
 		</div><br>
 	</div>
+	<?php
+}
+				if($row['fechahoras'] != 0 || $row['horariodehoras'] != 0 || $row['horarioahoras'] != 0){
+				?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -331,6 +343,10 @@ if($_SESSION['privilegio'] < 1){
 			</div>
 		</div><br>
 	</div>
+	<?php
+}
+				if($row['nodediasvacaciones'] != 0 || $row['nodediasvacaciones2'] != 0 || $row['delvacaciones'] != 0 || $row['delvacaciones2'] != 0 || $row['alvacaciones'] != 0 || $row['alvacaciones2'] != 0){
+				?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid black;">
@@ -427,6 +443,9 @@ if($_SESSION['privilegio'] < 1){
 			</div>
 		</div>
 			</div>
+			<?php
+}
+?>
 		</div>
 	</div>
 	<!-- ACABA PARTE INFERIOR DERECHA DE LA PANTALLA -->
