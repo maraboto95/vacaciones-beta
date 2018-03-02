@@ -46,10 +46,10 @@ http://www.templatemo.com/tm-488-classic
                                 <li class="nav-item active">
                                     <a href="permisos.php" class="nav-link">Hacer Solicitud</a>
                                 </li>
-                                <!--
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">About</a>
+                                    <a href="logoutuser.php" class="nav-link">Logout</a>
                                 </li>
+                                <!--
                                 <li class="nav-item">
                                     <a href="blog.html" class="nav-link">Blog</a>
                                 </li>
@@ -63,7 +63,7 @@ http://www.templatemo.com/tm-488-classic
             </div>            
         </div>
 
-        <div class="tm-home-img-container">
+        <div class="tm-home-img-container" style="width:100em; height:900px; overflow-x: auto;">
             <img src="assets/img/crit.jpg" alt="Image" class="hidden-lg-up img-fluid" style="width:1800px; height:900px;">
         </div>
 

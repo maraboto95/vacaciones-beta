@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 
 //Checa si el usuario cuenta con los permisos suficientes para acceder, si no, lo regresa a login.
 if($_SESSION['privilegio'] < 1){
-	header("Location: homeuser.php");
+  header("Location: homeuser.php");
     exit; // prevent further execution, should there be more code that follows
 }
 ?>
@@ -60,9 +60,42 @@ if($_SESSION['privilegio'] < 1){
     <!-- ########################################################################################## -->
 
     <!--Contenido Variante/Principal -->
-    <div id="homepage" class="last clear">
+    <div id="homepage" class="last clear contenido">
       <!--Modificar aquí(?) -->
-
+      <center>
+      <h3>Agregar Empleado</h3><br>
+        <form role="form" action="insert.php" method="post">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" name="nombre" class="form-control texto" required>
+          </div>
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" name="apellido" class="form-control texto" required>
+          </div>
+          <div class="form-group">
+            <label>Puesto</label>
+            <input type="text" name="puesto" class="form-control texto" required>
+          </div>
+          <div class="form-group">
+            <label>Turno</label>
+            <input type="text" name="turno" class="form-control texto" required>
+          </div>
+          <div class="form-group">
+            <label>Nómina</label>
+            <input type="text" name="nomina" class="form-control texto" required>
+          </div>
+          <div class="form-group">
+            <label>Jefe</label>
+            <input type="text" name="jefe" class="form-control texto" required>
+          </div>
+          <div class="form-group date">
+            <label>Fecha de antigüedad</label>
+            <input type="date" name="fechaantiguedad" class="form-control" required>
+          </div><br>
+          <button type="submit" class="btn btn-primary btn-block">Add Empleado</button>
+        </form><br></center>
+        <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->
   </div>
