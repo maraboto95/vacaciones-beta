@@ -22,6 +22,15 @@ if($_SESSION['privilegio'] < 1){
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
+<?php
+
+include('dbconnect.php');
+
+$query = "SELECT * FROM noticias WHERE tipo='general'";
+
+$result = mysqli_query($conn, $query);
+
+?>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
@@ -33,8 +42,9 @@ if($_SESSION['privilegio'] < 1){
       <ul>
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
-        <li><a href="#">Ver Solicitudes</a></li>
-        <li class="last"><a href="#">Logout</a></li>
+        <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
+        <li><a href="#">Agregar Noticia</a></li>
+        <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -44,12 +54,48 @@ if($_SESSION['privilegio'] < 1){
   <div id="container" class="clear">
     <!-- Slider -->
     <section id="slider" class="clear">
+      <div class="row">
+        <div class="col-sm-2">
+          <h2>Noticias generales</h2><br>
+          <?php
+
+            //Recoger todos los datos que se trajeron de la BD.
+            while($row = mysqli_fetch_assoc($result)){
+            ?>
+          <div class="mySlides w3-container w3-red">
+    <h1><b><?php echo $row['titulo']; ?></b></h1>
+    <h1><i><?php echo $row['noticia']; ?></i></h1>
+    <p><?php echo $row['fecha']; ?></p>
+  </div>
+<?php
+
+        }
+          ?>
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 10000); 
+}
+</script>
+        </div>
+        <div class="col-sm-8">
       <figure><img src="basic-90/images/demo/crit.jpg" alt="">
         <figcaption>
           <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
           <p>Este sistema de administrador es para agregar y revisar información sobre los empleados y checar y aceptar solicitudes de los mismos.</p>
         </figcaption>
-      </figure>
+      </figure><br>
+    </div>
     </section>
     <!-- Separación -->
     <div id="intro">
@@ -63,6 +109,7 @@ if($_SESSION['privilegio'] < 1){
     <div id="homepage" class="last clear">
       <!--Modificar aquí(?) -->
 
+      <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->
   </div>

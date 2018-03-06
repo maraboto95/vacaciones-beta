@@ -42,9 +42,10 @@ if($_SESSION['privilegio'] < 1){
     <nav>
       <ul>
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
-        <li><a href="ver-empleados">Ver Empleados</a></li>
-        <li><a href="#">Ver Solicitudes</a></li>
-        <li class="last"><a href="#">Logout</a></li>
+        <li><a href="ver-empleados.php">Ver Empleados</a></li>
+        <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
+        <li><a href="#">Agregar Noticia</a></li>
+        <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>

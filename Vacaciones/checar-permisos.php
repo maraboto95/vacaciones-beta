@@ -1,6 +1,4 @@
 <?php
-//Código para la página de checar permisos
-
 session_start(); // start session
 
 // do check
@@ -9,7 +7,7 @@ if (!isset($_SESSION["username"])) {
     exit; // prevent further execution, should there be more code that follows
 }
 
-//si el usuario no cuenta con los permisos para ver esta página, redireccionar a login.
+//Checa si el usuario cuenta con los permisos suficientes para acceder, si no, lo regresa a login.
 if($_SESSION['privilegio'] < 1){
 	header("Location: homeuser.php");
     exit; // prevent further execution, should there be more code that follows
@@ -17,14 +15,12 @@ if($_SESSION['privilegio'] < 1){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-	<title>Vacaciones Beta</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<title>Vacaciones Beta</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
 	<?php
@@ -38,13 +34,49 @@ if($_SESSION['privilegio'] < 1){
 
 
 	?>
-	<!-- PARTE SUPERIOR DE LA PANTALLA DONDE ESTÁ EL TITULO, FILTRO Y BOTÓN DE LOGOUT -->
-	<div class="container bg-info" style="padding-top:20px; padding-bottom:20px;">
-		<div class="row">
-			<div class="col-sm-4">
-				<h3>Sistema de Vacaciones Beta</h3><br>
-				<a href="index.php"><button type="submit" class="btn btn-primary btn-block">Regresar</button></a>
-			</div>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1><a href="index.php">Sistema Vacaciones Beta</a></h1>
+      <h2>Versión 0.3</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
+        <li><a href="ver-empleados.php">Ver Empleados</a></li>
+        <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
+        <li><a href="#">Agregar Noticia</a></li>
+        <li class="last"><a href="logout.php">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- Slider -->
+    <section id="slider" class="clear">
+      <div class="row">
+        <div class="col-sm-8">
+      <figure><img src="basic-90/images/demo/crit.jpg" alt="">
+        <figcaption>
+          <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
+          <p>Este sistema de administrador es para agregar y revisar información sobre los empleados y checar y aceptar solicitudes de los mismos.</p>
+        </figcaption>
+      </figure><br>
+    </div>
+    </section>
+    <!-- Separación -->
+    <div id="intro">
+    </div>
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
+
+    <!--Contenido Variante/Principal -->
+    <div id="homepage" class="last clear">
+      <!--Modificar aquí(?) -->
 			<div class="col-sm-4" style="padding-left:150px;">
 				<form action="" method="post">
 				<select class="form-control" name="select">
@@ -66,10 +98,6 @@ if($_SESSION['privilegio'] < 1){
 			}
 			?>
 			</div>
-			<div class="col-sm-4" style="padding-left:300px;">
-				<a href="logout.php" class="btn btn-danger" role="button">Logout</a>
-			</div>
-		</div>
 		<!-- ACABA PARTE SUPERIOR DE LA PANTALLA -->
 		<br>
 		<?php
@@ -90,7 +118,6 @@ if($_SESSION['privilegio'] < 1){
 
 			<!-- PARTE INFERIOR DERECHA DE LA PANTALLA DONDE SE DESPLIEGAN TODOS LOS PERMISOS DE ACUERDO AL FILTRO -->
 			<div class="col-sm-8">
-				<h3>Permisos</h3>
 				<?php
 
 				if($row['nodediassueldo'] != 0 || $row['nodediassueldo2'] != 0 || $row['delsueldo'] != 0 || $row['delsueldo2'] != 0 || $row['alsueldo'] != 0 || $row['alsueldo2'] != 0){
@@ -445,15 +472,18 @@ if($_SESSION['privilegio'] < 1){
 			</div>
 			<?php
 }
+}
 ?>
-		</div>
-	</div>
-	<!-- ACABA PARTE INFERIOR DERECHA DE LA PANTALLA -->
-	<?php
-					}
-
-					//Se cierra la conexión a la BD.
-						mysqli_close($conn);
-						?>
+		 <!-- HASTA AQUÍ -->
+    </div>
+    <!-- / content body -->
+  </div>
+</div>
+<!-- Footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Crit Crit</a></p>
+  </footer>
+</div>
 </body>
 </html>

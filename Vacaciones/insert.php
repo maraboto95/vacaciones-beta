@@ -18,7 +18,7 @@ $nomina = $_POST['nomina'];
 
 $jefe = $_POST['jefe'];
 
-$fechaantiguedad = =$_POST['fechaantiguedad'];
+$fechaantiguedad = $_POST['fechaantiguedad'];
 
 $titulacion = 'disponible';
 

@@ -20,6 +20,7 @@ if($_SESSION['privilegio'] < 1){
 <title>Vacaciones Beta</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
@@ -33,8 +34,9 @@ if($_SESSION['privilegio'] < 1){
       <ul>
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
-        <li><a href="#">Ver Solicitudes</a></li>
-        <li class="last"><a href="#">Logout</a></li>
+        <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
+        <li><a href="#">Agregar Noticia</a></li>
+        <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -79,15 +81,33 @@ if($_SESSION['privilegio'] < 1){
           </div>
           <div class="form-group">
             <label>Turno</label>
-            <input type="text" name="turno" class="form-control texto" required>
+            <select name="turno" class="form-control texto" required>
+              <option value="Matutino">Matutino</option>
+              <option value="Nocturno">Nocturno</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Nómina</label>
-            <input type="text" name="nomina" class="form-control texto" required>
+            <input type="number" name="nomina" class="form-control texto" required>
           </div>
           <div class="form-group">
             <label>Jefe</label>
-            <input type="text" name="jefe" class="form-control texto" required>
+            <select name="jefe" class="form-control texto" required>
+              <?php
+            include('dbconnect.php');
+
+  $query = "SELECT * FROM jefes";
+
+  $result = mysqli_query($conn, $query);
+
+  while($row = mysqli_fetch_assoc($result)){
+
+  ?>
+              <option value="<?php echo $row['nombre']; echo $row['apellido'];?>"><?php echo $row['nombre']; echo $row['apellido']; ?></option>
+              <?php
+          }
+          ?>
+            </select>
           </div>
           <div class="form-group date">
             <label>Fecha de antigüedad</label>

@@ -3,74 +3,114 @@ session_start(); // start session
 
 // do check
 if (!isset($_SESSION["username"])) {
-    header("Location: loginuser.php");
+    header("Location: login.php");
     exit; // prevent further execution, should there be more code that follows
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Vacaciones Beta</title>
-<!--
-Classic Template
-http://www.templatemo.com/tm-488-classic
--->
-    <!-- load stylesheets -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">                                      <!-- Bootstrap style -->
-    <link rel="stylesheet" href="assets/css/templatemo-style.css">                                   <!-- Templatemo style -->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-          <![endif]-->
+<title>Vacaciones Beta</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
+<?php
 
-    <body>
-       
-        <div class="tm-header">
-            <div class="container-fluid">
-                <div class="tm-header-inner">
-                    <a href="#" class="navbar-brand tm-site-name">Sistema de Vacaciones Beta</a>
-                    
-                    <!-- navbar -->
-                    <nav class="navbar tm-main-nav">
-                            <ul class="nav navbar-nav">
-                                <li class="nav-item active">
-                                    <a href="permisos.php" class="nav-link">Hacer Solicitud</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="logoutuser.php" class="nav-link">Logout</a>
-                                </li>
-                                <!--
-                                <li class="nav-item">
-                                    <a href="blog.html" class="nav-link">Blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact</a>
-                                </li> -->
-                            </ul>                        
-                    </nav>  
+include('dbconnect.php');
 
-                </div>                                  
-            </div>            
+$query = "SELECT * FROM noticias WHERE tipo='general'";
+
+$result = mysqli_query($conn, $query);
+
+?>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1><a href="index.php">Sistema Vacaciones Beta</a></h1>
+      <h2>Versión 0.3</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="permisos.php">Hacer Permiso</a></li>
+        <li><a href="ver-empleados.php">Ver Noticias Personales</a></li>
+        <li class="last"><a href="logoutuser.php">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <!-- Slider -->
+    <section id="slider" class="clear">
+      <div class="row">
+        <div class="col-sm-2">
+          <h2>Noticias generales</h2><br>
+          <?php
+
+            //Recoger todos los datos que se trajeron de la BD.
+            while($row = mysqli_fetch_assoc($result)){
+            ?>
+          <div class="mySlides w3-container w3-red">
+    <h1><b><?php echo $row['titulo']; ?></b></h1>
+    <h1><i><?php echo $row['noticia']; ?></i></h1>
+    <p><?php echo $row['fecha']; ?></p>
+  </div>
+<?php
+
+        }
+          ?>
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 10000); 
+}
+</script>
         </div>
+        <div class="col-sm-8">
+      <figure><img src="basic-90/images/demo/crit.jpg" alt="">
+        <figcaption>
+          <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
+          <p>Este sistema de empleado es para hacer solicitudes de permisos.</p>
+        </figcaption>
+      </figure><br>
+    </div>
+    </section>
+    <!-- Separación -->
+    <div id="intro">
+    </div>
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
+    <!-- ########################################################################################## -->
 
-        <div class="tm-home-img-container" style="width:100em; height:900px; overflow-x: auto;">
-            <img src="assets/img/crit.jpg" alt="Image" class="hidden-lg-up img-fluid" style="width:1800px; height:900px;">
-        </div>
+    <!--Contenido Variante/Principal -->
+    <div id="homepage" class="last clear">
+      <!--Modificar aquí(?) -->
 
-        <!-- load JS files -->
-        <script src="assets/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-        <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h --> 
-        <script src="assets/js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-       
+      <!-- HASTA AQUÍ -->
+    </div>
+    <!-- / content body -->
+  </div>
+</div>
+<!-- Footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Crit Crit</a></p>
+  </footer>
+</div>
 </body>
 </html>
