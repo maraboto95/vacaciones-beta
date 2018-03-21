@@ -17,13 +17,11 @@ $nomina = $_GET['nomina'];
 
 $jefe = $_GET['jefe'];
 
-$fechaantiguedad = $_GET['fechaantiguedad'];
-
-$query = "UPDATE empleados SET nombre='$nombre', apellido='$apellido', puesto='$puesto', turno='$turno', nomina='$nomina', jefe='$jefe', fechadeantiguedad='$fechaantiguedad' WHERE id='$id'";
+$query = "UPDATE empleados SET nombre='$nombre', apellido='$apellido', puesto='$puesto', turno='$turno', nomina='$nomina', jefe='$jefe' WHERE id='$id'";
 
 if(mysqli_query($conn, $query)){
 	echo "Updated";
-	header('Location: index.php');
+	header('Location: ver-empleados.php');
 }else{
 	echo "Error";
 }

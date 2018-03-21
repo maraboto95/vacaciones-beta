@@ -31,7 +31,11 @@ $row = mysqli_fetch_assoc($result);
 </head>
 <body>
 	<!-- COMIENZA FORMA DE SOLICITUD DE PERMISOS Y VACACIONES -->
-	<div class="col-md-12" style="text-align:center">
+	<div class="row">
+		<div class="col-md-2">
+			<a href="homeuser.php"><button class="btn">Regresar</button></a>
+		</div>
+	<div class="col-md-10" style="text-align:center">
 				<h1>SOLICITUD DE PERMISOS Y VACACIONES</h1><br><br>
 	</div>
 	<div class="container" style="border:1px solid black;">

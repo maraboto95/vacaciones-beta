@@ -29,12 +29,12 @@
           <h2>Sistema de Solicitud de Permisos</h2>
           <form class="form-signin" method="post" action="manejadoruser.php">
 					<center>
-					<br><h3 class="form-signin-heading">Sign in</h3><br>
-					<label for="user" class="sr-only">Nombre</label>
+					<br><h3 class="form-signin-heading">Iniciar Sesión</h3><br>
+					<label for="user" class="sr-only">Correo</label>
 					<input type="text" name="usuario" class="form-control" placeholder="Nombre" required autofocus><br><br>
-					<label for="password" class="sr-only">Apellido</label>
+					<label for="password" class="sr-only">Contraseña</label>
 					<input type="password" name="password" class="form-control" placeholder="Password" required>
-					<input type="submit" name="submit" class="btn btn-lg btn-primary btn-block" value="Sign In">
+					<input type="submit" name="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
 				</center>
 				</form>
         </figcaption>

@@ -10,7 +10,7 @@ $query = "DELETE FROM empleados WHERE id='$id'";
 
 if(mysqli_query($conn, $query)){
 	echo "Borrado";
-	header('Location: index.php');
+	header('Location: ver-empleados.php');
 }else{
 	echo "Error";
 }

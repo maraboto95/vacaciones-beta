@@ -34,9 +34,9 @@ $result = mysqli_query($conn, $query);
     </div>
     <nav>
       <ul>
-        <li><a href="permisos.php">Hacer Permiso</a></li>
-        <li><a href="ver-empleados.php">Ver Noticias Personales</a></li>
-        <li class="last"><a href="logoutuser.php">Logout</a></li>
+        <li><a href="permisos.php">Solicitar Permiso</a></li>
+        <li><a href="ver-noticias.php">Mis notificaciones</a></li>
+        <li class="last"><a href="logoutuser.php">Cerrar Sesión</a></li>
       </ul>
     </nav>
   </header>

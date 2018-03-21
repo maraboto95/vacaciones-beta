@@ -45,7 +45,7 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
-        <li><a href="#">Agregar Noticia</a></li>
+        <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -78,13 +78,14 @@ if($_SESSION['privilegio'] < 1){
     <div id="homepage" class="last clear">
       <!--Modificar aquí(?) -->
 			<div class="col-sm-4" style="padding-left:150px;">
+				<center>
 				<form action="" method="post">
-				<select class="form-control" name="select">
+				<select class="form-control filtro" name="select">
 					<option name="filtro" value="pendientes">Pendientes</option>
 					<option name="filtro" value="todos">Todos</option>
-				</select>
+				</select><br>
 				<input  class="btn" type="submit" name="submit" value="filtrar">
-			</form>
+			</form></center>
 			<?php 
 
 			//Se define el filtro para que traiga o los pendientes o todas las solicitudes.

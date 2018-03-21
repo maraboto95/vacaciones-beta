@@ -1,3 +1,15 @@
+<?php
+session_start(); // start session
+
+// do check
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit; // prevent further execution, should there be more code that follows
+}
+
+$vato = $_SESSION["username"];
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,6 +18,15 @@
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
+<?php
+
+include('dbconnect.php');
+
+$query = "SELECT * FROM noticias WHERE empleado='$vato'";
+
+$result = mysqli_query($conn, $query);
+
+?>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
@@ -14,6 +35,11 @@
       <h2>Versión 0.3</h2>
     </div>
     <nav>
+      <ul>
+        <li><a href="permisos.php">Solicitar Permiso</a></li>
+        <li><a href="ver-noticias.php">Mis notificaciones</a></li>
+        <li class="last"><a href="logoutuser.php">Cerrar Sesión</a></li>
+      </ul>
     </nav>
   </header>
 </div>
@@ -25,18 +51,9 @@
       <div class="row">
         <div class="col-sm-8">
       <figure><img src="basic-90/images/demo/crit.jpg" alt="">
-        <figcaption style="height: 325px;">
-          <h2>Sistema de Solicitud de Permisos</h2>
-          <form class="form-signin" method="post" action="manejador.php">
-					<center>
-					<h3 class="form-signin-heading">Iniciar Sesión</h3>
-					<label for="user" class="sr-only">Correo Institucional</label>
-					<input type="text" name="usuario" class="form-control login" placeholder="E-mail" required autofocus>
-					<label for="password" class="sr-only">Contraseña</label>
-					<input type="password" name="password" class="form-control login" placeholder="Password" required><br>
-					<input type="submit" name="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
-				</center>
-				</form>
+        <figcaption>
+          <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
+          <p>Este sistema de empleado es para hacer solicitudes de permisos.</p>
         </figcaption>
       </figure><br>
     </div>
@@ -52,7 +69,37 @@
     <!--Contenido Variante/Principal -->
     <div id="homepage" class="last clear">
       <!--Modificar aquí(?) -->
+      <h2>Noticias de <?php echo $vato; ?></h2><br>
+          <?php
 
+            //Recoger todos los datos que se trajeron de la BD.
+            while($row = mysqli_fetch_assoc($result)){
+            ?>
+          <div class="mySlides w3-container w3-red">
+    <h1><b><?php echo $row['titulo']; ?></b></h1>
+    <h1><i><?php echo $row['noticia']; ?></i></h1>
+    <p><?php echo $row['fecha']; ?></p>
+  </div>
+<?php
+
+        }
+          ?>
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 10000); 
+}
+</script>
       <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->

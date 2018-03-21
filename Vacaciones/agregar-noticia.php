@@ -65,55 +65,28 @@ if($_SESSION['privilegio'] < 1){
     <div id="homepage" class="last clear contenido">
       <!--Modificar aquí(?) -->
       <center>
-      <h3>Agregar Empleado</h3><br>
-        <form role="form" action="insert.php" method="post">
+      <h3>Agregar Noticia</h3><br>
+        <form role="form" action="insert-noticia.php" method="post">
           <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control texto" required>
+            <label>Título</label>
+            <input type="text" name="titulo" class="form-control texto" required>
           </div>
           <div class="form-group">
-            <label>Apellido</label>
-            <input type="text" name="apellido" class="form-control texto" required>
+            <label>Noticia</label>
+            <textarea name="noticia" class="form-control texto" required></textarea>
           </div>
           <div class="form-group">
-            <label>Puesto</label>
-            <input type="text" name="puesto" class="form-control texto" required>
-          </div>
-          <div class="form-group">
-            <label>Turno</label>
-            <select name="turno" class="form-control texto" required>
-              <option value="Matutino">Matutino</option>
-              <option value="Nocturno">Vespertino</option>
+            <label>Tipo</label>
+            <select id="tipo" name="tipo" onchange="" class="form-control texto" required>
+              <option value="General">General</option>
+              <option value="Personal">Personal</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Nómina</label>
-            <input type="number" name="nomina" class="form-control texto" style="width: 100px;" required>
-          </div>
-          <div class="form-group">
-            <label>Jefe</label>
-            <select name="jefe" class="form-control texto" required>
-              <?php
-            include('dbconnect.php');
-
-  $query = "SELECT * FROM jefes";
-
-  $result = mysqli_query($conn, $query);
-
-  while($row = mysqli_fetch_assoc($result)){
-
-  ?>
-              <option value="<?php echo $row['nombre']; echo $row['apellido'];?>"><?php echo $row['nombre']; echo $row['apellido']; ?></option>
-              <?php
-          }
-          ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Fecha de antigüedad</label>
-            <input type="date" name="fechaantiguedad" class="form-control date" required>
+          <div id="empleado" class="form-group my_hide my_opt2">
+            <label>Empleado</label>
+            <input type="text" name="empleado" class="form-control texto">
           </div><br>
-          <button type="submit" class="btn btn-primary btn-block">Add Empleado</button>
+          <button type="submit" class="btn btn-primary btn-block">Add Noticia</button>
         </form><br></center>
         <!-- HASTA AQUÍ -->
     </div>

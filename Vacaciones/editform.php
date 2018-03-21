@@ -45,8 +45,9 @@ $result = mysqli_query($conn, $query);
       <ul>
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
-        <li><a href="#">Ver Solicitudes</a></li>
-        <li class="last"><a href="#">Logout</a></li>
+        <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
+        <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
+        <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -85,6 +86,9 @@ $result = mysqli_query($conn, $query);
             ?>
         <form role="form" action="edit.php" method="get">
           <div class="form-group">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+          </div>
+          <div class="form-group">
             <label>Nombre</label>
             <input type="text" name="nombre" class="form-control texto" value="<?php echo $row['nombre']; ?>" required>
           </div>
@@ -108,7 +112,7 @@ $result = mysqli_query($conn, $query);
             <label>Jefe</label>
             <input type="text" name="jefe" class="form-control texto" value="<?php echo $row['jefe']; ?>" required>
           </div><br>
-          <button type="submit" class="btn btn-primary btn-block">Add Empleado</button>
+          <button type="submit" class="btn btn-primary btn-block">Edit Empleado</button>
         </form><br></center>
         <?php
     }

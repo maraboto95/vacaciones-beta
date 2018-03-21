@@ -44,7 +44,7 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="agregar-empleado.php">Agregar Empleado</a></li>
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
-        <li><a href="#">Agregar Noticia</a></li>
+        <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -105,8 +105,8 @@ if($_SESSION['privilegio'] < 1){
               <td><?php echo $row['jefe']; ?></td>
               <td><?php echo $row['fechadeantiguedad']; ?></td>
               <td>
-                <a href="editform.php?id=<?php echo $row['id']; ?>" class="btn btn-success" role="button">Editar</a>
-                <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" role="button">Borrar</a>
+                <a href="editform.php?id=<?php echo $row['id']; ?>" role="button"><button class="btn">Editar</button></a>
+                <a href="delete.php?id=<?php echo $row['id']; ?>" role="button"><button class="btn">Borrar</button></a>
               </td>
             </tr>
             <?php

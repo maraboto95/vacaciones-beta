@@ -22,9 +22,11 @@ $fechaantiguedad = $_POST['fechaantiguedad'];
 
 $titulacion = 'disponible';
 
+echo $fechaantiguedad;
+
 //Query
 
-$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad, titulacion, matrimonio) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', $fechaantiguedad, '$titulacion', '$titulacion')";
+$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad, titulacion, matrimonio) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', '$fechaantiguedad', '$titulacion', '$titulacion')";
 
 if(mysqli_query($conn, $query)){
 	echo "Insert exitoso";
@@ -34,6 +36,6 @@ if(mysqli_query($conn, $query)){
 
 mysqli_close($conn);
 
-header('Location: index.php');
+header('Location: ver-empleados.php');
 
 ?>
