@@ -46,6 +46,8 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
         <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
         <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
+        <li><a href="agregar-beneficio.php">Agregar Beneficio</a></li><br><br>
+        <li><a href="ver-beneficios-admin.php">Ver Beneficios</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -111,6 +113,7 @@ if($_SESSION['privilegio'] < 1){
         <table class="table">
           <thead>
             <tr>
+              <th>Foto</th>
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Puesto</th>
@@ -130,6 +133,7 @@ if($_SESSION['privilegio'] < 1){
             
             ?>
             <tr>
+              <td><img src="imagenes/empleados/<?php echo $row['imagen']; ?>" class="minifoto"></td>
               <td><?php echo $row['nombre']; ?></td>
               <td><?php echo $row['apellido']; ?></td>
               <td><?php echo $row['puesto']; ?></td>

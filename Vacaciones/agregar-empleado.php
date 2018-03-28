@@ -36,6 +36,9 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
         <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
+        <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
+        <li><a href="agregar-beneficio.php">Agregar Beneficio</a></li><br><br>
+        <li><a href="ver-beneficios-admin.php">Ver Beneficios</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -66,7 +69,7 @@ if($_SESSION['privilegio'] < 1){
       <!--Modificar aquí(?) -->
       <center>
       <h3>Agregar Empleado</h3><br>
-        <form role="form" action="insert.php" method="post">
+        <form role="form" action="insert.php" method="post" enctype='multipart/form-data'>
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" name="nombre" class="form-control texto" required>
@@ -126,6 +129,10 @@ if($_SESSION['privilegio'] < 1){
           <div class="form-group">
             <label>Fecha de antigüedad</label>
             <input type="date" name="fechaantiguedad" class="form-control date" required>
+          </div><br>
+          <div>
+            <label>Foto colaborador </label>
+            <input type='file' name='userFile' class="form-group">
           </div><br>
           <button type="submit" class="btn btn-primary btn-block">Add Empleado</button>
         </form><br></center>

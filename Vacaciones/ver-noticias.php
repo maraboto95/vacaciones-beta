@@ -7,7 +7,17 @@ if (!isset($_SESSION["username"])) {
     exit; // prevent further execution, should there be more code that follows
 }
 
+include('dbconnect.php');
+
 $vato = $_SESSION["username"];
+
+$query = "SELECT nombre, apellido FROM empleados WHERE correo='$vato'";
+
+$result = mysqli_query($conn, $query);
+
+$row = mysqli_fetch_assoc($result);
+
+$name = $row['nombre']." ".$row['apellido'];
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +30,7 @@ $vato = $_SESSION["username"];
 </head>
 <?php
 
-include('dbconnect.php');
-
-$query = "SELECT * FROM noticias WHERE empleado='$vato'";
+$query = "SELECT * FROM noticias WHERE empleado='$name'";
 
 $result = mysqli_query($conn, $query);
 
@@ -84,22 +92,6 @@ $result = mysqli_query($conn, $query);
 
         }
           ?>
-<script>
-var slideIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none"; 
-    }
-    slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1} 
-    x[slideIndex-1].style.display = "block"; 
-    setTimeout(carousel, 10000); 
-}
-</script>
       <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->

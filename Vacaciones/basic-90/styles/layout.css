@@ -2,6 +2,35 @@ html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than 
 
 body{margin:0; padding:0; font-size:13px; font-family:Georgia, "Times New Roman", Times, serif; color:#000000; background-color:#ffd203;}
 
+body.new{background-color: #ffffff;}
+
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css');
+/* Fixed navbar */
+body.new {
+    padding-top: 90px;
+}
+/* General sizing */
+body.new ul.dropdown-lr {
+  width: 300px;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+  .dropdown-lr h3 {
+    color: #eee;
+  }
+  .dropdown-lr label {
+    color: #eee;
+  }
+}
+
+img.beneficios{width: 300px; height: 250px;}
+
+img.minifoto{width: 128px; height: 128px;}
+
+.container-fluid{background-color: #3c153b;}
+
+
 .clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
 .clear{display:block; clear:both;}
 html[xmlns] .clear{display:block;}

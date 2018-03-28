@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['attempt'] == 0){
+if($_SESSION['attempt'] == null){
   $_SESSION['attempt'] = 0;
 }
 ?>
@@ -18,7 +18,7 @@ if($_SESSION['attempt'] == 0){
   <header id="header" class="clear">
     <div id="hgroup">
       <h1><a href="index.php">Sistema Vacaciones Beta</a></h1>
-      <h2>Versión 0.3</h2>
+      <h2>Versión 0.4</h2>
     </div>
     <nav>
     </nav>
