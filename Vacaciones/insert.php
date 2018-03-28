@@ -18,15 +18,31 @@ $nomina = $_POST['nomina'];
 
 $jefe = $_POST['jefe'];
 
+$estadocivil = $_POST['estadocivil'];
+
 $fechaantiguedad = $_POST['fechaantiguedad'];
 
-$titulacion = 'disponible';
+$titulacion = $_POST['titulado'];
+
+if($estadocivil == "casado"){
+	$estadocivil = "usado";
+}else{
+	$estadocivil = "disponible";
+}
+
+if($titulacion == "titulado"){
+	$titulacion = "usado";
+}else{
+	$titulacion = "disponible";
+}
 
 echo $fechaantiguedad;
+echo $estadocivil;
+echo $titulacion;
 
 //Query
 
-$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad, titulacion, matrimonio) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', '$fechaantiguedad', '$titulacion', '$titulacion')";
+$query = "INSERT INTO empleados(nombre, apellido, puesto, turno, nomina, jefe, fechadeantiguedad, titulacion, matrimonio) VALUES('$nombre', '$apellido', '$puesto', '$turno', '$nomina', '$jefe', '$fechaantiguedad', '$titulacion', '$estadocivil')";
 
 if(mysqli_query($conn, $query)){
 	echo "Insert exitoso";

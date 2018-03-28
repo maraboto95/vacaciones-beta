@@ -1,3 +1,10 @@
+<?php
+session_start();
+if($_SESSION['attempt'] == 0){
+  $_SESSION['attempt'] = 0;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -30,6 +37,13 @@
           <form class="form-signin" method="post" action="manejador.php">
 					<center>
 					<h3 class="form-signin-heading">Iniciar Sesión</h3>
+          <?php
+          if($_SESSION['attempt'] > 0){
+          ?>
+          <p class="bad">Correo o Contraseña incorrectos</p>
+          <?php
+        }
+          ?>
 					<label for="user" class="sr-only">Correo Institucional</label>
 					<input type="text" name="usuario" class="form-control login" placeholder="E-mail" required autofocus>
 					<label for="password" class="sr-only">Contraseña</label>

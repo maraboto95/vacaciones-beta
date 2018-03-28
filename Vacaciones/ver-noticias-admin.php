@@ -20,20 +20,17 @@ if($_SESSION['privilegio'] < 1){
 <title>Vacaciones Beta</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <?php
 
-  //Se conecta a la BD y trae los permisos que estén pendientes.
-  include('dbconnect.php');
+include('dbconnect.php');
 
-  $query = "SELECT * FROM empleados";
+$query = "SELECT * FROM noticias";
 
-  $result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query);
 
-
-  ?>
+?>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
@@ -47,6 +44,7 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
         <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
+        <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -57,12 +55,15 @@ if($_SESSION['privilegio'] < 1){
   <div id="container" class="clear">
     <!-- Slider -->
     <section id="slider" class="clear">
+      <div class="row">
+        <div class="col-sm-8">
       <figure><img src="basic-90/images/demo/crit.jpg" alt="">
         <figcaption>
           <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
-          <p>Este sistema de administrador es para agregar y revisar información sobre los empleados y checar y aceptar solicitudes de los mismos.</p>
+          <p>Este sistema de empleado es para hacer solicitudes de permisos.</p>
         </figcaption>
-      </figure>
+      </figure><br>
+    </div>
     </section>
     <!-- Separación -->
     <div id="intro">
@@ -73,45 +74,26 @@ if($_SESSION['privilegio'] < 1){
     <!-- ########################################################################################## -->
 
     <!--Contenido Variante/Principal -->
-    <div id="homepage" class="last clear contenido">
+    <div id="homepage" class="last clear">
       <!--Modificar aquí(?) -->
-      <center>
-      <h3>Agregar Noticia</h3><br>
-        <form role="form" action="insert-noticia.php" method="post">
-          <div class="form-group">
-            <label>Título</label>
-            <input type="text" name="titulo" class="form-control texto" required>
-          </div>
-          <div class="form-group">
-            <label>Noticia</label>
-            <textarea name="noticia" class="form-control texto" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Tipo</label>
-            <select id="tipo" name="tipo" onchange="" class="form-control texto" required>
-              <option value="General">General</option>
-              <option value="Personal">Personal</option>
-            </select>
-          </div>
-          <div id="empleado" class="form-group my_hide my_opt2">
-            <label>Empleado</label>
-            <select name="empleado" class="form-control texto">
-              <?php
-              while($row = mysqli_fetch_assoc($result)){
+          <?php
 
-            
+            //Recoger todos los datos que se trajeron de la BD.
+            while($row = mysqli_fetch_assoc($result)){
             ?>
-            <option><?php echo $row['nombre']; echo " "; echo $row['apellido']; ?></option>
-            <?php
-          }
+          <div class="mySlides w3-container w3-red">
+    <h1><b><?php echo $row['titulo']; ?></b></h1>
+    <h1><i><?php echo $row['noticia']; ?></i></h1>
+    <p><?php echo $row['fecha']; ?></p>
+    <p><?php echo $row['empleado']; ?></p>
+                <a href="editar-noticia.php?id=<?php echo $row['id']; ?>" role="button"><button class="btn">Editar</button></a>
+                <a href="borrar-noticia.php?id=<?php echo $row['id']; ?>" role="button" onclick="return confirm('Seguro que quieres borrar?')"><button class="btn">Borrar</button></a>
+  </div>
+<?php
 
-          mysqli_close($conn);
-            ?>
-            </select>
-          </div><br>
-          <button type="submit" class="btn btn-primary btn-block">Add Noticia</button>
-        </form><br></center>
-        <!-- HASTA AQUÍ -->
+        }
+          ?>
+      <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->
   </div>

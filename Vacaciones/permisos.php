@@ -3,7 +3,7 @@ session_start(); // start session
 
 // do check
 if (!isset($_SESSION["username"])) {
-    header("Location: loginuser.php");
+    header("Location: login.php");
     exit; // prevent further execution, should there be more code that follows
 }
 

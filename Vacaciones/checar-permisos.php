@@ -83,6 +83,8 @@ if($_SESSION['privilegio'] < 1){
 				<select class="form-control filtro" name="select">
 					<option name="filtro" value="pendientes">Pendientes</option>
 					<option name="filtro" value="todos">Todos</option>
+					<option name="filtro" value="aceptados">Aceptados</option>
+					<option name="filtro" value="rechazados">Rechazados</option>
 				</select><br>
 				<input  class="btn" type="submit" name="submit" value="filtrar">
 			</form></center>
@@ -93,8 +95,18 @@ if($_SESSION['privilegio'] < 1){
 				if($_POST['select'] == 'pendientes'){
 					$query = "SELECT * FROM permisos WHERE estatus='pendiente'";
 				}else{
+					if($_POST['select'] == 'todos'){
 					$query = "SELECT * FROM permisos";
+				}else{
+					if($_POST['select'] == 'aceptados'){
+					$query = "SELECT * FROM permisos WHERE estatus='aceptado'";
+				}else{
+					if($_POST['select'] == 'rechazados'){
+					$query = "SELECT * FROM permisos WHERE estatus='rechazado'";
 				}
+			}
+		}
+	}
 				$result = mysqli_query($conn, $query);
 			}
 			?>
@@ -112,8 +124,14 @@ if($_SESSION['privilegio'] < 1){
 		<div class="row">
 			<div class="col-sm-4">
 				<h2><strong>Permiso de <?php echo $row['nombredesolicitante']; ?>, Estatus: <?php echo $row['estatus']; ?></strong></h2>
+				<?php
+				if($_POST['select'] == 'pendientes'){
+				?>
 				<a href="aceptar.php?id=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-success btn-block">Aceptar</button></a><br>
 				<a href="rechazar.php?id=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-danger btn-block">Rechazar</button></a>
+				<?php
+			}
+				?>
 			</div>
 			<!-- ACABA PARTE INFERIOR IZQUIERDA DE LA PANTALLA -->
 

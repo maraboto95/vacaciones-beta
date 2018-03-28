@@ -45,6 +45,7 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="ver-empleados.php">Ver Empleados</a></li>
         <li><a href="checar-permisos.php">Ver Solicitudes</a></li>
         <li><a href="agregar-noticia.php">Agregar Noticia</a></li>
+        <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -72,6 +73,38 @@ if($_SESSION['privilegio'] < 1){
 
     <!--Contenido Variante/Principal -->
     <div id="homepage" class="last clear">
+      <form role="form" action="ver-empleados.php" method="get">
+                                        <div class="col-sm-4">
+                                          <h2>Nómina</h2>
+                                            <input type="text" name="filtro" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn bg-success btn-block">Buscar</button>
+                                        </div></form>
+                                        <form role="form" action="ver-empleados.php" method="get">
+                                        <h2>Jefe</h2>
+                                        <input type="text" name="filtro2" class="form-control">
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn bg-success btn-block">Buscar</button>
+                                        </div>
+                                    <br><br></form>
+                                    <?php
+
+    $busqueda = $_GET['filtro'];
+    $busqueda2 = $_GET['filtro2'];
+
+    if($busqueda != null){
+        $query = "SELECT * FROM empleados WHERE nomina='$busqueda'";
+    }else{
+      if($busqueda2 == null){
+        $query = "SELECT * FROM empleados ORDER BY nombre ASC";
+      }else{
+        $query = "SELECT * FROM empleados WHERE jefe LIKE '%$busqueda2%'";
+      }
+    }
+
+    $result = mysqli_query($conn, $query);
+    ?>
       <!--Modificar aquí(?) -->
       <center>
       <h3>Empleados</h3><br>
@@ -106,7 +139,7 @@ if($_SESSION['privilegio'] < 1){
               <td><?php echo $row['fechadeantiguedad']; ?></td>
               <td>
                 <a href="editform.php?id=<?php echo $row['id']; ?>" role="button"><button class="btn">Editar</button></a>
-                <a href="delete.php?id=<?php echo $row['id']; ?>" role="button"><button class="btn">Borrar</button></a>
+                <a href="delete.php?id=<?php echo $row['id']; ?>" role="button" onclick="return confirm('Seguro que quieres borrar?')"><button class="btn">Borrar</button></a>
               </td>
             </tr>
             <?php

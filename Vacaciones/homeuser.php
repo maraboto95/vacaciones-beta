@@ -36,7 +36,7 @@ $result = mysqli_query($conn, $query);
       <ul>
         <li><a href="permisos.php">Solicitar Permiso</a></li>
         <li><a href="ver-noticias.php">Mis notificaciones</a></li>
-        <li class="last"><a href="logoutuser.php">Cerrar Sesión</a></li>
+        <li class="last"><a href="logout.php">Cerrar Sesión</a></li>
       </ul>
     </nav>
   </header>

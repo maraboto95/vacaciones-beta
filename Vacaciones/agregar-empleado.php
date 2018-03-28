@@ -110,6 +110,20 @@ if($_SESSION['privilegio'] < 1){
             </select>
           </div>
           <div class="form-group">
+            <label>Estado civil</label>
+            <select name="estadocivil" class="form-control texto" required>
+              <option value="casado">Casado</option>
+              <option value="Soltero">Soltero</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Titulado</label>
+            <select name="titulado" class="form-control texto" required>
+              <option value="titulado">Titulado</option>
+              <option value="No titulado">No Titulado</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Fecha de antigüedad</label>
             <input type="date" name="fechaantiguedad" class="form-control date" required>
           </div><br>

@@ -20,20 +20,20 @@ if($_SESSION['privilegio'] < 1){
 <title>Vacaciones Beta</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <?php
 
-  //Se conecta a la BD y trae los permisos que estén pendientes.
-  include('dbconnect.php');
+//Conexión a la BD
+include('dbconnect.php');
 
-  $query = "SELECT * FROM empleados";
+//Declaración de variables
+$id = $_GET['id'];
 
-  $result = mysqli_query($conn, $query);
+$query = "SELECT * FROM noticias WHERE id='$id'";
 
-
-  ?>
+$result = mysqli_query($conn, $query);
+?>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
@@ -76,41 +76,31 @@ if($_SESSION['privilegio'] < 1){
     <div id="homepage" class="last clear contenido">
       <!--Modificar aquí(?) -->
       <center>
-      <h3>Agregar Noticia</h3><br>
-        <form role="form" action="insert-noticia.php" method="post">
-          <div class="form-group">
-            <label>Título</label>
-            <input type="text" name="titulo" class="form-control texto" required>
-          </div>
-          <div class="form-group">
-            <label>Noticia</label>
-            <textarea name="noticia" class="form-control texto" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Tipo</label>
-            <select id="tipo" name="tipo" onchange="" class="form-control texto" required>
-              <option value="General">General</option>
-              <option value="Personal">Personal</option>
-            </select>
-          </div>
-          <div id="empleado" class="form-group my_hide my_opt2">
-            <label>Empleado</label>
-            <select name="empleado" class="form-control texto">
-              <?php
-              while($row = mysqli_fetch_assoc($result)){
+      <h3>Editar Noticia</h3><br>
+      <?php
+
+            //Recoger todos los datos que se trajeron de la BD.
+            while($row = mysqli_fetch_assoc($result)){
 
             
             ?>
-            <option><?php echo $row['nombre']; echo " "; echo $row['apellido']; ?></option>
-            <?php
-          }
-
-          mysqli_close($conn);
-            ?>
-            </select>
+        <form role="form" action="edit-news.php" method="get">
+          <div class="form-group">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+          </div>
+          <div class="form-group">
+            <label>Título</label>
+            <input type="text" name="titulo" class="form-control texto" value="<?php echo $row['titulo']; ?>" required>
+          </div>
+          <div class="form-group">
+            <label>Noticia</label>
+            <textarea name="noticia" class="form-control texto" required><?php echo $row['noticia']; ?></textarea>
           </div><br>
-          <button type="submit" class="btn btn-primary btn-block">Add Noticia</button>
+          <button type="submit" class="btn btn-primary btn-block">Edit Noticia</button>
         </form><br></center>
+        <?php
+    }
+        ?>
         <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->
