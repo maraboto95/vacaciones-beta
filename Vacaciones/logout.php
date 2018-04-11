@@ -4,6 +4,9 @@
 session_start();
 session_destroy();
 
-header('Location: indexnew.html')
+session_start();
+$_SESSION['attempt'] = 0;
+
+header('Location: indexnew.php')
 
 ?>

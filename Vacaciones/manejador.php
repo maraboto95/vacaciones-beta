@@ -30,10 +30,10 @@ if(mysqli_num_rows($result2) > 0){
 	session_start();
 	$_SESSION['username'] = $correo;
 	$_SESSION['privilegio'] = 0;
-	header('Location: homeuser.php');
+	header('Location: homeusernew.php');
 }else{
 	$_SESSION['attempt'] = 1;
-	header('Location: login.php');
+	header('Location: indexnew.php');
 }
 }
 

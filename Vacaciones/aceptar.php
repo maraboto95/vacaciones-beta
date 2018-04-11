@@ -33,13 +33,15 @@ $horaa = $row['horarioahoras'];
 $razon = $row['razondepermiso'];
 
 //Crear Query de los días del empleado
-$query = "SELECT * FROM empleados WHERE nombre='$nombre'";
+$query = "SELECT * FROM empleados WHERE correo='$nombre'";
 
 $result = mysqli_query($conn, $query);
 
 $row = mysqli_fetch_assoc($result);
 
 $diasdisponibles = $row['diasdisponibles'];
+
+$horasdisponibles = $row['horasdisponibles'];
 
 $vacacionesdisponibles = $row['vacacionesdisponibles'];
 
@@ -53,7 +55,7 @@ $resta = $diasdisponibles - $nodias3;
 
 if($resta>=0 && $posible == false && $nodias3 > 0){
 	$posible = true;
-	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
+	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE correo='$nombre'";
 
 	mysqli_query($conn, $query);
 }
@@ -62,7 +64,7 @@ $resta = $diasdisponibles - $nodias4;
 
 if($resta>=0 && $posible == false && $nodias4 > 0){
 	$posible = true;
-	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE nombre='$nombre'";
+	$query = "UPDATE empleados SET diasdisponibles='$resta' WHERE correo='$nombre'";
 
 	mysqli_query($conn, $query);
 }
@@ -71,7 +73,7 @@ $resta = $vacacionesdisponibles - $nodias5;
 
 if($resta>=0 && $posible == false && $nodias5 > 0){
 	$posible = true;
-	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE nombre='$nombre'";
+	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE correo='$nombre'";
 
 	mysqli_query($conn, $query);
 }
@@ -80,7 +82,7 @@ $resta = $vacacionesdisponibles - $nodias6;
 
 if($resta>=0 && $posible == false && $nodias6 > 0){
 	$posible = true;
-	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE nombre='$nombre'";
+	$query = "UPDATE empleados SET vacacionesdisponibles='$resta' WHERE correo='$nombre'";
 
 	mysqli_query($conn, $query);
 }
@@ -102,8 +104,22 @@ if($razon == "titulacion" && $titulacion == "disponible"){
 		}
 	}
 }
+$hour = new DateTime($horade);
+$hour2 = new DateTime($horaa);
+$restahoras = date_diff($hour2, $hour);
+$horastring = $restahoras->format('%h');
+$horaint = (int)$horastring;
 
-$query = "UPDATE empleados SET titulacion='$titulacion', matrimonio='$matrimonio' WHERE nombre='$nombre'";
+$restahoras = $horasdisponibles - $horaint;
+
+if($restahoras>=0 && $posible == false && $horaint > 0){
+	$posible = true;
+	$query = "UPDATE empleados SET horasdisponibles='$restahoras' WHERE correo='$nombre'";
+
+	mysqli_query($conn, $query);
+}
+
+$query = "UPDATE empleados SET titulacion='$titulacion', matrimonio='$matrimonio' WHERE correo='$nombre'";
 
 if(mysqli_query($conn, $query)){
 		echo "Updated";
@@ -127,6 +143,5 @@ if($posible == true){
 }
 
 mysqli_close($conn);
-
 
 ?>

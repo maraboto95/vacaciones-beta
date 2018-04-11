@@ -1,3 +1,10 @@
+<?php
+session_start();
+if($_SESSION['attempt'] == null){
+  $_SESSION['attempt'] = 0;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link text-white" href="http://localhost/vacaciones/indexnew.html">Inicio
+              <a class="nav-link text-white" href="http://localhost/vacaciones/indexnew.php">Inicio
                 <span class="sr-only">(current)</span>
               </a>
             </li>
