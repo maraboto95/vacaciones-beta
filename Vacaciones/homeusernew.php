@@ -120,6 +120,21 @@ function carousel() {
 }
 </script>
 
+<?php
+
+include('dbconnect.php');
+
+$nombre = $_SESSION["username"];
+
+$query = "SELECT * FROM empleados WHERE correo='$nombre'";
+
+$result=mysqli_query($conn, $query);
+
+$row = mysqli_fetch_assoc($result);
+?>
+<br>
+<h1>Días disponibles: <?php echo $row['diasdisponibles']; ?></h1>
+
 
     <!-- Footer -->
     <footer class="py-5 navbar-light" style="background-color: #3c153b;">

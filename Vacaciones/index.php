@@ -47,6 +47,7 @@ $result = mysqli_query($conn, $query);
         <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
         <li><a href="agregar-beneficio.php">Agregar Beneficio</a></li><br><br>
         <li><a href="ver-beneficios-admin.php">Ver Beneficios</a></li>
+        <li><a href="prohibir-fecha.php">Bloquear Fechas</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>

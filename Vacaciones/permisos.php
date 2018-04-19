@@ -34,8 +34,8 @@ $row = mysqli_fetch_assoc($result);
 <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
 <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.dataviz.default.min.css" rel="stylesheet" type="text/css" />
 <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.all.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
 </head>
 <body>
 	<!-- COMIENZA FORMA DE SOLICITUD DE PERMISOS Y VACACIONES -->
@@ -77,6 +77,10 @@ $row = mysqli_fetch_assoc($result);
 			<div class="col-md-4"></div>
 		</div><br>
 	</div><br>
+  <?php
+
+  $fechadeantiguedad = $row['fechadeantiguedad'];
+  ?>
 	<!-- TERMINA SECCIÓN BASE -->
 
 	<!-- SECCIÓN DE PERMISOS CON GOCE DE SUELDO -->
@@ -113,41 +117,287 @@ $row = mysqli_fetch_assoc($result);
 						</tr>
 					</thead>
 					<tbody>
-						<script type="text/javascript">
-
-						</script>
 						<tr>
-							<td><input id="datepicker" value="10/10/2011" name="del1" style="width:150px;" />
+              <?php
+
+              $query = "SELECT * FROM fechasprohibidas";
+
+              $result=mysqli_query($conn, $query);
+
+              $result2=mysqli_query($conn, $query);
+
+              $result3=mysqli_query($conn, $query);
+
+              $result4=mysqli_query($conn, $query);
+
+              $result5=mysqli_query($conn, $query);
+
+              $result6=mysqli_query($conn, $query);
+
+              $result7=mysqli_query($conn, $query);
+
+              $result8=mysqli_query($conn, $query);
+
+              $result9=mysqli_query($conn, $query);
+
+              $result10=mysqli_query($conn, $query);
+
+              $result11=mysqli_query($conn, $query);
+
+              $result12=mysqli_query($conn, $query);
+
+              $result13=mysqli_query($conn, $query);
+
+              ?>
+							<td><input id="datepicker" value="10/10/2011" name="del1" style="width:150px;" min="" />
   <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+        $(document).ready(function() {
+
+            $("#datepicker").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row = mysqli_fetch_assoc($result)){ ?>
+                    new Date("<?php echo $row['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker2").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                    <?php while($row2 = mysqli_fetch_assoc($result2)){ ?>
+                    new Date("<?php echo $row2['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker2").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker3").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row3 = mysqli_fetch_assoc($result3)){ ?>
+                    new Date("<?php echo $row3['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker3").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker4").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row4 = mysqli_fetch_assoc($result4)){ ?>
+                    new Date("<?php echo $row4['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker4").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker5").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row5 = mysqli_fetch_assoc($result5)){ ?>
+                    new Date("<?php echo $row5['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker5").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker6").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row6 = mysqli_fetch_assoc($result6)){ ?>
+                    new Date("<?php echo $row6['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker6").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker7").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row7 = mysqli_fetch_assoc($result7)){ ?>
+                    new Date("<?php echo $row7['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker7").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker8").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row8 = mysqli_fetch_assoc($result8)){ ?>
+                    new Date("<?php echo $row8['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker8").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker9").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row9 = mysqli_fetch_assoc($result9)){ ?>
+                    new Date("<?php echo $row9['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker9").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker10").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row10 = mysqli_fetch_assoc($result10)){ ?>
+                    new Date("<?php echo $row10['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker10").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker11").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row11 = mysqli_fetch_assoc($result11)){ ?>
+                    new Date("<?php echo $row11['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker11").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker12").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row12 = mysqli_fetch_assoc($result12)){ ?>
+                    new Date("<?php echo $row12['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker12").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            $("#datepicker13").kendoDatePicker({
+                value: new Date(),
+                min: new Date(),
+                dates: [
+                <?php while($row13 = mysqli_fetch_assoc($result13)){ ?>
+                    new Date("<?php echo $row13['fechas']; ?>"),
+                    <?php } ?>
+                ],
+                disableDates: function (date) {
+                    var dates = $("#datepicker13").data("kendoDatePicker").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            function compareDates(date, dates) {
+                for (var i = 0; i < dates.length; i++) {
+                    if (dates[i].getDate() == date.getDate() &&
+                        dates[i].getMonth() == date.getMonth() &&
+                        dates[i].getYear() == date.getYear()) {
+                    return true
+                    }
+                }
+            }
+        });
+    </script>
    
   <style>
     .disabledDay{
@@ -163,37 +413,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker2" value="10/10/2011" name="del2" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker2").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker2" value="10/10/2011" name="del2" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -220,37 +440,7 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input id="datepicker3" value="10/10/2011" name="al1" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker3").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker3" value="10/10/2011" name="al1" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -266,37 +456,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker4" value="10/10/2011" name="al2" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker4").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker4" value="10/10/2011" name="al2" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -320,7 +480,18 @@ $row = mysqli_fetch_assoc($result);
 				<strong>TITULACIÓN</strong>
 			</div>
 			<div class="col-md-4">
+        <?php
+
+        if($row['titulacion'] != "usado"){
+        ?>
 				<input type="radio" name="opcion1" value="titulacion" style="height:25px; width:25px;">
+        <?php
+      }else{
+        ?>
+        <input type="radio" name="opcion1" value="titulacion" style="height:25px; width:25px;" disabled>
+        <?php
+      }
+        ?>
 			</div>
 		</div>
 		<div class="row">
@@ -344,7 +515,18 @@ $row = mysqli_fetch_assoc($result);
 				<strong>MATRIMONIO</strong>
 			</div>
 			<div class="col-md-4">
-				<input type="radio" name="opcion1" value="matrimonio" style="height:25px; width:25px;">
+				<?php
+
+        if($row['matrimonio'] != "usado"){
+        ?>
+        <input type="radio" name="opcion1" value="matrimonio" style="height:25px; width:25px;">
+        <?php
+      }else{
+        ?>
+        <input type="radio" name="opcion1" value="matrimonio" style="height:25px; width:25px;" disabled>
+        <?php
+      }
+        ?>
 			</div>
 		</div>
 		<div class="row">
@@ -415,37 +597,7 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input id="datepicker5" value="10/10/2011" name="del3" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker5").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker5" value="10/10/2011" name="del3" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -461,37 +613,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker6" value="10/10/2011" name="del4" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker6").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker6" value="10/10/2011" name="del4" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -518,37 +640,7 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input id="datepicker7" value="10/10/2011" name="al3" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker7").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker7" value="10/10/2011" name="al3" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -564,37 +656,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker8" value="10/10/2011" name="al4" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker8").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker8" value="10/10/2011" name="al4" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -632,37 +694,7 @@ $row = mysqli_fetch_assoc($result);
 		<div class="row">
 			<div class="col-md-5">
 				<label>FECHA:</label>
-				<input id="datepicker9" value="10/10/2011" name="fecha" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker9").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+				<input id="datepicker9" value="10/10/2011" name="fecha" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -730,37 +762,7 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input id="datepicker10" value="10/10/2011" name="del5" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker10").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker10" value="10/10/2011" name="del5" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -776,37 +778,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker11" value="10/10/2011" name="del6" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker11").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker11" value="10/10/2011" name="del6" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -833,37 +805,7 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input id="datepicker12" value="10/10/2011" name="al5" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker12").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker12" value="10/10/2011" name="al5" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -879,37 +821,7 @@ $row = mysqli_fetch_assoc($result);
     </style></td>
 						</tr>
 						<tr>
-							<td><input id="datepicker13" value="10/10/2011" name="al6" style="width:150px;" />
-  <script>
-   $(document).ready(function() {
-        disabledDays = [
-          +new Date("4/14/2018"),
-          +new Date("4/21/2018"),
-          +new Date("4/28/2018"),
-        ];
-    
-        var p = $("#datepicker13").kendoDatePicker({
-            value: new Date(), //setting the value to "today"
-            dates: disabledDays, //passing the disabledDays array to the template
-              month: {
-              // template for dates in month view
-              content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +  
-              '<div class="disabledDay">#= data.value #</div>' +
-              '# } else { #' +
-              '#= data.value #' +
-              '# } #'
-              },
-           
-            open: function(e){
-              $(".disabledDay").parent().removeClass("k-link") //removing this class makes the day unselectable
-              $(".disabledDay").parent().removeAttr("href") //this removes the hyperlink styling
-            },
-        }).data("kendoDatePicker");
-   });
-     
-     
- 
-  </script>
+							<td><input id="datepicker13" value="10/10/2011" name="al6" style="width:150px;" min="" />
    
   <style>
     .disabledDay{
@@ -931,7 +843,7 @@ $row = mysqli_fetch_assoc($result);
 		<div class="row">
 			<div class="col-md-12">
 				<label>FECHA DE ANTIGÜEDAD:</label>
-				<input type="date" class="form-control" name="fechadeantiguedad" style="width:300px" value="<?php echo $row['fechadeantiguedad'] ?>" disabled>
+				<input type="date" class="form-control" name="fechadeantiguedad" style="width:300px" value="<?php echo $fechadeantiguedad ?>" disabled>
 			</div>
 		</div><br><br><button type="submit" class="btn btn-info">Solicitar</button></form><br><br>
 	</div>

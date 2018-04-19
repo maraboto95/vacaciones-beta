@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2018 a las 02:17:37
+-- Tiempo de generación: 19-04-2018 a las 03:42:46
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -90,6 +90,7 @@ CREATE TABLE `empleados` (
   `vacacionesdisponibles` int(3) NOT NULL,
   `titulacion` varchar(20) NOT NULL,
   `matrimonio` varchar(20) NOT NULL,
+  `practicante` varchar(5) NOT NULL,
   `imagen` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -97,18 +98,37 @@ CREATE TABLE `empleados` (
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `puesto`, `area`, `turno`, `nomina`, `correo`, `contrasena`, `jefe`, `horasdisponibles`, `fechadeantiguedad`, `diasdisponibles`, `vacacionesdisponibles`, `titulacion`, `matrimonio`, `imagen`) VALUES
-(2, 'Juan', 'Perez', 'Guardia', '', 'Matutino', 'A00511478', 'juanperez@teleton.mx', 'perez', 'JosÃ© Rodriguez', 10, '2018-02-02', 10, 10, 'usado', 'disponible', ''),
-(3, 'otro', 'sipi', 'ese', '', 'Matutino', 'A00510492', '', '', 'El SeÃ±or Jefe', 10, '0000-00-00', 0, 0, '', '', ''),
-(5, 'Diego', 'Hernandezs', 'Gerentes', '', '', '', '', '', '', 0, '0000-00-00', 0, 0, '', '', ''),
-(8, 'Fernando', 'Gonzalez', 'Gerente', '', 'Nocturno', 'A00513555', '', '', 'jefe', 0, '0000-00-00', 0, 0, '', '', ''),
-(11, 'AdriÃ¡n', 'Rosales', 'NiÃ±o', '', 'Matutino', 'A00512067', '', '', 'RamÃ³n Maraboto', 0, '0000-00-00', 0, 0, '', '', ''),
-(12, 'Antonio Belsain', 'Villafuerte', 'Tecnico Soporte', '', 'Matutino', '10286', '', '', 'Luis Alberto Arteaga Rocha', 0, '0000-00-00', 0, 0, 'disponible', 'disponible', ''),
-(13, 'Empleado 1', 'Del empleado', 'TÃ©cnico', '', 'Nocturno', '48920', '', '', 'RaulHernandez', 0, '0000-00-00', 0, 0, 'disponible', 'disponible', ''),
-(18, 'ejemplo', 'ejemplo', 'ejemplo', '', 'Nocturno', '78963', '', '', 'jefazorodriguez', 0, '2015-05-13', 0, 0, 'disponible', 'disponible', ''),
-(22, 'eee', 'eee', 'eee', '', 'Matutino', '12356', '', '', 'jefazorodriguez', 0, '2018-02-08', 0, 0, 'usado', 'usado', ''),
-(23, 'prueba2', 'una prubea', 'un puesto', '', 'Matutino', '14852', '', '', 'RaulHernandez', 0, '2018-03-01', 0, 0, 'disponible', 'disponible', '14852'),
-(24, 'empleado 2', 'dasdad', 'uno', '', 'Matutino', '78945', '', '', 'jefazorodriguez', 0, '2018-03-04', 0, 0, 'usado', 'usado', '78945.jpg');
+INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `puesto`, `area`, `turno`, `nomina`, `correo`, `contrasena`, `jefe`, `horasdisponibles`, `fechadeantiguedad`, `diasdisponibles`, `vacacionesdisponibles`, `titulacion`, `matrimonio`, `practicante`, `imagen`) VALUES
+(2, 'Juan', 'Perez', 'Guardia', '', 'Matutino', 'A00511478', 'juanperez@teleton.mx', 'perez', 'JosÃ© Rodriguez', 6, '2018-02-02', 7, 10, 'usado', 'disponible', 'no', ''),
+(3, 'otro', 'sipi', 'ese', '', 'Matutino', 'A00510492', '', '', 'El SeÃ±or Jefe', 10, '0000-00-00', 0, 0, '', '', '', ''),
+(5, 'Diego', 'Hernandezs', 'Gerentes', '', '', '', '', '', '', 0, '0000-00-00', 0, 0, '', '', '', ''),
+(8, 'Fernando', 'Gonzalez', 'Gerente', '', 'Nocturno', 'A00513555', '', '', 'jefe', 0, '0000-00-00', 0, 0, '', '', '', ''),
+(11, 'AdriÃ¡n', 'Rosales', 'NiÃ±o', '', 'Matutino', 'A00512067', '', '', 'RamÃ³n Maraboto', 0, '0000-00-00', 0, 0, '', '', '', ''),
+(12, 'Antonio Belsain', 'Villafuerte', 'Tecnico Soporte', '', 'Matutino', '10286', '', '', 'Luis Alberto Arteaga Rocha', 0, '0000-00-00', 0, 0, 'disponible', 'disponible', '', ''),
+(13, 'Empleado 1', 'Del empleado', 'TÃ©cnico', '', 'Nocturno', '48920', '', '', 'RaulHernandez', 0, '0000-00-00', 0, 0, 'disponible', 'disponible', '', ''),
+(18, 'ejemplo', 'ejemplo', 'ejemplo', '', 'Nocturno', '78963', '', '', 'jefazorodriguez', 0, '2015-05-13', 0, 0, 'disponible', 'disponible', '', ''),
+(22, 'eee', 'eee', 'eee', '', 'Matutino', '12356', '', '', 'jefazorodriguez', 0, '2018-02-08', 0, 0, 'usado', 'usado', '', ''),
+(23, 'prueba2', 'una prubea', 'un puesto', '', 'Matutino', '14852', '', '', 'RaulHernandez', 0, '2018-03-01', 0, 0, 'disponible', 'disponible', '', '14852'),
+(24, 'empleado 2', 'dasdad', 'uno', '', 'Matutino', '78945', '', '', 'jefazorodriguez', 0, '2018-03-04', 0, 0, 'usado', 'usado', '', '78945.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fechasprohibidas`
+--
+
+CREATE TABLE `fechasprohibidas` (
+  `fechas` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `fechasprohibidas`
+--
+
+INSERT INTO `fechasprohibidas` (`fechas`) VALUES
+('2018-04-24'),
+('2018-04-30'),
+('2018-05-23');
 
 -- --------------------------------------------------------
 
@@ -209,7 +229,12 @@ INSERT INTO `permisos` (`id`, `nombredesolicitante`, `fechadeantiguedad`, `noded
 (9, 'juan', '2018-02-01', 1, 0, 0, 0, 0, 0, '2018-02-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-02-24', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'titulacion', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', ''),
 (10, 'juan', '2018-02-02', 1, 0, 0, 0, 0, 0, '2018-05-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-05-17', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'titulacion', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'aceptado'),
 (11, 'juan', '2018-02-02', 1, 0, 0, 0, 0, 0, '2018-03-02', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-03-03', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'titulacion', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'aceptado'),
-(12, 'juan', '2018-02-02', 2, 0, 0, 0, 0, 0, '2018-02-22', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-02-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'titulacion', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'rechazado');
+(12, 'juan', '2018-02-02', 2, 0, 0, 0, 0, 0, '2018-02-22', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-02-23', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'titulacion', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'rechazado'),
+(13, 'juanperez@teleton.mx', '0000-00-00', 2, 0, 0, 0, 0, 0, '2018-04-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-04-18', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'cursos', '', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'pendiente'),
+(14, 'juanperez@teleton.mx', '0000-00-00', 0, 0, 3, 0, 0, 0, '0000-00-00', '0000-00-00', '2018-04-22', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-04-25', '0000-00-00', '0000-00-00', '0000-00-00', '', 'Motivo X', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'aceptado'),
+(15, 'juanperez@teleton.mx', '0000-00-00', 0, 0, 3, 0, 0, 0, '0000-00-00', '0000-00-00', '2018-04-16', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '2018-04-19', '0000-00-00', '0000-00-00', '0000-00-00', '', 'Motivo Y', '', '0000-00-00', '00:00:00.000000', '00:00:00.000000', 'aceptado'),
+(16, 'juanperez@teleton.mx', '2018-02-02', 0, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '', 'Prueba 1', '2018-04-10', '09:00:00.000000', '13:00:00.000000', 'aceptado'),
+(17, 'juanperez@teleton.mx', '2018-02-02', 0, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '', '', 'sdgj', '2018-04-12', '10:00:00.000000', '13:00:00.000000', 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -247,6 +272,12 @@ ALTER TABLE `convenios`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `fechasprohibidas`
+--
+ALTER TABLE `fechasprohibidas`
+  ADD PRIMARY KEY (`fechas`);
 
 --
 -- Indices de la tabla `jefes`
@@ -298,7 +329,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

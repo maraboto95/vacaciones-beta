@@ -20,17 +20,9 @@ if($_SESSION['privilegio'] < 1){
 <title>Vacaciones Beta</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="basic-90/styles/layout.css" type="text/css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
-<?php
-
-include('dbconnect.php');
-
-$query = "SELECT * FROM convenios";
-
-$result = mysqli_query($conn, $query);
-
-?>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear">
@@ -58,15 +50,12 @@ $result = mysqli_query($conn, $query);
   <div id="container" class="clear">
     <!-- Slider -->
     <section id="slider" class="clear">
-      <div class="row">
-        <div class="col-sm-8">
       <figure><img src="basic-90/images/demo/crit.jpg" alt="">
         <figcaption>
           <h2>Sistema de Solicitud de Permisos Crit Tamaulipas</h2>
-          <p>Este sistema de empleado es para hacer solicitudes de permisos.</p>
+          <p>Este sistema de administrador es para agregar y revisar información sobre los empleados y checar y aceptar solicitudes de los mismos.</p>
         </figcaption>
-      </figure><br>
-    </div>
+      </figure>
     </section>
     <!-- Separación -->
     <div id="intro">
@@ -77,23 +66,15 @@ $result = mysqli_query($conn, $query);
     <!-- ########################################################################################## -->
 
     <!--Contenido Variante/Principal -->
-    <div id="homepage" class="last clear">
+    <div id="homepage" class="last clear contenido">
       <!--Modificar aquí(?) -->
-          <?php
-
-            //Recoger todos los datos que se trajeron de la BD.
-            while($row = mysqli_fetch_assoc($result)){
-            ?>
-          <div class="beneficios">
-    <img src="imagenes/beneficios/<?php echo $row['imagen']; ?>" class="beneficios"><br>
-    <p><?php echo $row['descripcion']; ?></p>
-                <a href="borrar-beneficio.php?id=<?php echo $row['imagen']; ?>" role="button" onclick="return confirm('Seguro que quieres borrar?')"><button class="btn">Borrar</button></a>
-  </div>
-<?php
-
-        }
-          ?>
-      <!-- HASTA AQUÍ -->
+<center>
+  <form role="form" action="prohibir.php" method="post" enctype='multipart/form-data'>
+  <label>Prohibir fecha</label><br>
+  <input type="date" name="fechaprohibida" class="form-control date" required><br>
+  <button type="submit" class="btn btn-primary btn-block">Prohibir</button></form>
+</center>
+        <!-- HASTA AQUÍ -->
     </div>
     <!-- / content body -->
   </div>

@@ -39,6 +39,7 @@ if($_SESSION['privilegio'] < 1){
         <li><a href="ver-noticias-admin.php">Ver Noticias</a></li>
         <li><a href="agregar-beneficio.php">Agregar Beneficio</a></li><br><br>
         <li><a href="ver-beneficios-admin.php">Ver Beneficios</a></li>
+        <li><a href="prohibir-fecha.php">Bloquear Fechas</a></li>
         <li class="last"><a href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -124,6 +125,13 @@ if($_SESSION['privilegio'] < 1){
             <select name="titulado" class="form-control texto" required>
               <option value="titulado">Titulado</option>
               <option value="No titulado">No Titulado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Completo/Practicante</label>
+            <select name="practicante" class="form-control texto" required>
+              <option value="titulado">Tiempo Completo</option>
+              <option value="No titulado">Practicante</option>
             </select>
           </div>
           <div class="form-group">
