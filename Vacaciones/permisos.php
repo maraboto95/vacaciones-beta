@@ -14,9 +14,9 @@ $nombre = $_SESSION["username"];
 
 $query = "SELECT * FROM empleados WHERE correo='$nombre'";
 
-$result=mysqli_query($conn, $query);
+$result33=mysqli_query($conn, $query);
 
-$row = mysqli_fetch_assoc($result);
+$row33 = mysqli_fetch_assoc($result33);
 ?>
 
 <!DOCTYPE html>
@@ -52,34 +52,34 @@ $row = mysqli_fetch_assoc($result);
 
 				<!-- SECCIÓN BASE -->
 				<label>Nombre: </label>
-				<input type="text" class="form-control" placeholder="<?php echo $row['nombre']; echo $row['apellido'] ?>" style="width:500px;" disabled>
+				<input type="text" class="form-control" placeholder="<?php echo $row33['nombre']; echo ' '; echo $row33['apellido'] ?>" style="width:500px;" disabled>
 			</div>
 			<div class="col-md-4">
 				<label>No. de Nómina: </label>
-				<input type="text" class="form-control" placeholder="<?php echo $row['nomina'] ?>" style="" disabled>
+				<input type="text" class="form-control" placeholder="<?php echo $row33['nomina'] ?>" style="" disabled>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-8">
 				<label>Puesto: </label>
-				<input type="text" class="form-control" placeholder="<?php echo $row['puesto'] ?>" style="width:500px;" disabled>
+				<input type="text" class="form-control" placeholder="<?php echo $row33['puesto'] ?>" style="width:500px;" disabled>
 			</div>
 			<div class="col-md-4">
 				<label>Turno: </label>
-				<input type="text" class="form-control" placeholder="<?php echo $row['turno']; ?>" style="" disabled>
+				<input type="text" class="form-control" placeholder="<?php echo $row33['turno']; ?>" style="" disabled>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-8">
 				<label>Jefe Inmediato: </label>
-				<input type="text" class="form-control" placeholder="<?php echo $row['jefe']; ?>" style="width:500px;" disabled>
+				<input type="text" class="form-control" placeholder="<?php echo $row33['jefe']; ?>" style="width:500px;" disabled>
 			</div>
 			<div class="col-md-4"></div>
 		</div><br>
 	</div><br>
   <?php
 
-  $fechadeantiguedad = $row['fechadeantiguedad'];
+  $fechadeantiguedad = $row33['fechadeantiguedad'];
   ?>
 	<!-- TERMINA SECCIÓN BASE -->
 
@@ -101,10 +101,10 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias1"></td>
+							<td><input type="number" class="form-control" name="nodias1"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias2"></td>
+							<td><input type="number" class="form-control" name="nodias2"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -482,7 +482,7 @@ $row = mysqli_fetch_assoc($result);
 			<div class="col-md-4">
         <?php
 
-        if($row['titulacion'] != "usado"){
+        if($row33['titulacion'] != "usado"){
         ?>
 				<input type="radio" name="opcion1" value="titulacion" style="height:25px; width:25px;">
         <?php
@@ -517,7 +517,7 @@ $row = mysqli_fetch_assoc($result);
 			<div class="col-md-4">
 				<?php
 
-        if($row['matrimonio'] != "usado"){
+        if($row33['matrimonio'] != "usado"){
         ?>
         <input type="radio" name="opcion1" value="matrimonio" style="height:25px; width:25px;">
         <?php
@@ -580,10 +580,10 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias3"></td>
+							<td><input id="vacano1" type="number" class="form-control" name="nodias3"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias4"></td>
+							<td><input id="vacano3" type="number" class="form-control" name="nodias4"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -709,14 +709,18 @@ $row = mysqli_fetch_assoc($result);
     }
     </style>
 			</div>
-			<div class="col-md-4">
+            <div class="col-md-2">
+                <label>NO. DE HORAS</label>
+                <input type="text" class="form-control" name="nohoras" id="vacano2">
+            </div>
+			<div class="col-md-2">
 				<label>HORARIO: </label>
 				<label>DE:</label>
-				<input type="time" class="form-control" name="horariode">
+				<input id="horade" type="time" class="form-control" name="horariode">
 			</div>
 			<div class="col-md-3">
 				<label>A:</label>
-				<input type="time" class="form-control" name="horarioa">
+				<input id="horaa" type="time" class="form-control" name="horarioa">
 			</div>
 		</div>
 		<div class="row">
@@ -745,10 +749,10 @@ $row = mysqli_fetch_assoc($result);
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias5"></td>
+							<td><input id="vacano4" type="number" class="form-control" name="nodias5"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" name="nodias6"></td>
+							<td><input id="vacano5" type="number" class="form-control" name="nodias6"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -844,8 +848,41 @@ $row = mysqli_fetch_assoc($result);
 			<div class="col-md-12">
 				<label>FECHA DE ANTIGÜEDAD:</label>
 				<input type="date" class="form-control" name="fechadeantiguedad" style="width:300px" value="<?php echo $fechadeantiguedad ?>" disabled>
+                <input type="hidden" name="sepuede" id="ojala" value="0">
 			</div>
-		</div><br><br><button type="submit" class="btn btn-info">Solicitar</button></form><br><br>
+		</div><br><br><button class="btn btn-info" onClick="posible()">Solicitar</button><br><br>
+        <script type="text/javascript">
+        function posible() {
+            x = 0;
+
+            if(document.getElementById('vacano1').value > <?php echo $row33['diasdisponibles']; ?> || document.getElementById('vacano3').value > <?php echo $row33['diasdisponibles']; ?>){
+                x = 1;
+            }
+
+            if(document.getElementById('vacano2').value > <?php echo $row33['horasdisponibles']; ?> || document.getElementById('vacano2').value > 3){
+                x = 2;
+            }
+
+            if(document.getElementById('vacano4').value > <?php echo $row33['vacacionesdisponibles']; ?> || document.getElementById('vacano5').value > <?php echo $row33['vacacionesdisponibles']; ?>){
+                x = 3;
+            }
+                switch(x){
+                    case 1: alert("Faltan días");
+                            document.getElementById('ojala').value = 1;
+                        break;
+                        
+                    case 2: alert("Faltan horas");
+                            document.getElementById('ojala').value = 1;
+                        break;
+
+                    case 3: alert("Faltan días de vacaciones");
+                            document.getElementById('ojala').value = 1;
+
+                    default: alert("Permiso enviado");
+                        break;
+                }
+            }
+        </script></form>
 	</div>
 	<!-- TERMINA SECCIÓN 4 -->
 

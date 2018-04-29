@@ -31,6 +31,8 @@ $nodias5 = $_POST['nodias5'];
 
 $nodias6 = $_POST['nodias6'];
 
+$nohoras = $_POST['nohoras'];
+
 $del1 = $_POST['del1'];
 
 $del2 = $_POST['del2'];
@@ -67,15 +69,19 @@ $horariode = $_POST['horariode'];
 
 $horarioa = $_POST['horarioa'];
 
+$posible = $_POST['sepuede'];
+
 //Query
 
-$query = "INSERT INTO `permisos` (`id`, `nombredesolicitante`, `fechadeantiguedad`, `nodediassueldo`, `nodediassueldo2`, `nodediasnosueldo`, `nodediasnosueldo2`, `nodediasvacaciones`, `nodediasvacaciones2`, `delsueldo`, `delsueldo2`, `delnosueldo`, `delnosueldo2`, `delvacaciones`, `delvacaciones2`, `alsueldo`, `alsueldo2`, `alnosueldo`, `alnosueldo2`, `alvacaciones`, `alvacaciones2`, `razondepermiso`, `motivosinsueldo`, `motivohoras`, `fechahoras`, `horariodehoras`, `horarioahoras`, `estatus`) VALUES (NULL, '$nombre', '$fechadeantiguedad', '$nodias1', '$nodias2', '$nodias3', '$nodias4', '$nodias5', '$nodias6', '$del1', '$del2', '$del3', '$del4', '$del5', '$del6', '$al1', '$al2', '$al3', '$al4', '$al5', '$al6', '$opcion1', '$motivo1', '$motivo2', '$fecha', '$horariode', '$horarioa', 'pendiente');";
+$query = "INSERT INTO `permisos` (`id`, `nombredesolicitante`, `fechadeantiguedad`, `nodediassueldo`, `nodediassueldo2`, `nodediasnosueldo`, `nodediasnosueldo2`, `nodediasvacaciones`, `nodediasvacaciones2`, `delsueldo`, `delsueldo2`, `delnosueldo`, `delnosueldo2`, `delvacaciones`, `delvacaciones2`, `alsueldo`, `alsueldo2`, `alnosueldo`, `alnosueldo2`, `alvacaciones`, `alvacaciones2`, `razondepermiso`, `motivosinsueldo`, `motivohoras`, `nodehoras`, `fechahoras`, `horariodehoras`, `horarioahoras`, `estatus`) VALUES (NULL, '$nombre', '$fechadeantiguedad', '$nodias1', '$nodias2', '$nodias3', '$nodias4', '$nodias5', '$nodias6', '$del1', '$del2', '$del3', '$del4', '$del5', '$del6', '$al1', '$al2', '$al3', '$al4', '$al5', '$al6', '$opcion1', '$motivo1', '$motivo2', '$nohoras', '$fecha', '$horariode', '$horarioa', 'pendiente');";
 
+if($posible <= 0){
 if($result = mysqli_query($conn, $query)){
 	echo "Insert exitoso";
 }else{
 	echo "Error ";
 	echo $result;
+}
 }
 
 mysqli_close($conn);

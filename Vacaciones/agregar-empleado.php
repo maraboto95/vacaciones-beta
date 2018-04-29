@@ -73,15 +73,15 @@ if($_SESSION['privilegio'] < 1){
         <form role="form" action="insert.php" method="post" enctype='multipart/form-data'>
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control texto" required>
+            <input type="text" name="nombre" class="form-control texto" pattern="[a-zA-Z]*" required>
           </div>
           <div class="form-group">
             <label>Apellido</label>
-            <input type="text" name="apellido" class="form-control texto" required>
+            <input type="text" name="apellido" class="form-control texto" pattern="[a-zA-Z]*" required>
           </div>
           <div class="form-group">
             <label>Puesto</label>
-            <input type="text" name="puesto" class="form-control texto" required>
+            <input type="text" name="puesto" class="form-control texto" pattern="[a-zA-Z]*" required>
           </div>
           <div class="form-group">
             <label>Turno</label>
